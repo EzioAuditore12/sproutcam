@@ -5,6 +5,8 @@ ios
 android
 *.lock
 pnpm-lock.yaml
+pnpm-workspace.yaml
+public
 yarn.lock
 package-lock.json
 bun.lockb
