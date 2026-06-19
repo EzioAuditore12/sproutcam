@@ -1,2 +1,3 @@
 onlyBuiltDependencies:
-  - "@journeyapps/wa-sqlite"
+  - '@journeyapps/wa-sqlite'
+  - '@shopify/react-native-skia'

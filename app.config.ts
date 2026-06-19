@@ -20,6 +20,11 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     predictiveBackGestureEnabled: false,
     package: "com.dakshpurohit.sproutcam",
   },
+  web: {
+    output: "single",
+    favicon: "./assets/images/favicon.png",
+    bundler: "metro",
+  },
   plugins: [
     "expo-router",
     [
@@ -30,6 +35,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         backgroundColor: "#ffffff",
       },
     ],
+    "@react-native-vector-icons/entypo",
+    "@react-native-vector-icons/ant-design",
+    "@react-native-vector-icons/fontawesome6",
   ],
   experiments: {
     typedRoutes: true,

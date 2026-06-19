@@ -3,8 +3,6 @@ const { withUniwindConfig } = require("uniwind/metro");
 
 const config = getDefaultConfig(__dirname);
 
-config.resolver.unstable_enablePackageExports = true;
-
 config.resolver.resolveRequest = (context, moduleName, platform) => {
   if (platform === "web") {
     // Depending on `@powersync/web` for functionality, ignore mobile specific dependencies.

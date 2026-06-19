@@ -7,7 +7,7 @@ import "../global.css";
 
 import { PowerSyncDatabaseProvider } from "@/db";
 
-export default function RootLayout() {
+export default function RootLayoutNative() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <HeroUINativeProvider

@@ -1,0 +1,75 @@
+import { db, type DbType } from "@/db";
+import { eq, inArray } from "drizzle-orm";
+import { type InsertDetection, type Detection, detectionsTable } from "../tables/detection.table";
+
+export class DetectionRepository {
+  private readonly database: DbType;
+  private readonly table = detectionsTable;
+
+  constructor(database: DbType = db) {
+    this.database = database;
+  }
+
+  public async create(insertDetection: InsertDetection): Promise<Detection> {
+    return await this.database.insert(this.table).values(insertDetection).returning().get();
+  }
+
+  public async createMultiple(insertDetections: InsertDetection[]): Promise<void> {
+    if (insertDetections.length === 0) return;
+    await this.database.insert(this.table).values(insertDetections);
+  }
+
+  public async get(id: string): Promise<Detection | undefined> {
+    return await this.database.select().from(this.table).where(eq(this.table.id, id)).get();
+  }
+
+  public async isExisting(id: string): Promise<boolean> {
+    const result = await this.database
+      .select({ id: this.table.id })
+      .from(this.table)
+      .where(eq(this.table.id, id))
+      .get();
+
+    if (!result) return false;
+
+    return true;
+  }
+
+  public async getManyById(ids: string[]): Promise<Detection[]> {
+    if (ids.length === 0) return [];
+    return await this.database.select().from(this.table).where(inArray(this.table.id, ids)).all();
+  }
+
+  public async createMany(detections: InsertDetection[]): Promise<Detection[]> {
+    if (detections.length === 0) return [];
+    return await this.database.insert(this.table).values(detections).returning().all();
+  }
+
+  public async areExistingManyById(ids: string[]): Promise<string[]> {
+    if (ids.length === 0) return [];
+    const result = await this.database
+      .select({ id: this.table.id })
+      .from(this.table)
+      .where(inArray(this.table.id, ids))
+      .all();
+
+    const foundIds = result.map((c) => c.id);
+
+    return foundIds;
+  }
+
+  public async getManyNamesById(ids: string[]): Promise<string[]> {
+    if (ids.length === 0) return [];
+    const result = await this.database
+      .select({ objectName: this.table.objectName })
+      .from(this.table)
+      .where(inArray(this.table.id, ids))
+      .all();
+
+    const foundNames = result.map((c) => c.objectName);
+
+    return foundNames;
+  }
+}
+
+export const detectionRepository = new DetectionRepository();
