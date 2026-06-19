@@ -1,3 +1,4 @@
 onlyBuiltDependencies:
   - '@journeyapps/wa-sqlite'
   - '@shopify/react-native-skia'
+  - unrs-resolver

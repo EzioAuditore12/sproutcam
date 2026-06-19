@@ -1,7 +1,7 @@
 import { PowerSyncDatabase as PowerSyncDatabaseWeb, WASQLiteOpenFactory } from "@powersync/web";
 import type { DrizzleAppSchema } from "@powersync/drizzle-driver";
 
-export const createPowerSyncWebDatabase = (dbName: string, schema: DrizzleAppSchema<any>) => {
+export const createPowerSyncDatabase = (dbName: string, schema: DrizzleAppSchema<any>) => {
   const factory = new WASQLiteOpenFactory({
     dbFilename: dbName,
     worker: "/@powersync/worker/WASQLiteDB.umd.js",
