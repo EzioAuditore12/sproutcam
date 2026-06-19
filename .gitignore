@@ -43,3 +43,5 @@ yarn-error.*
 /public
 /ios
 /android
+# heroui-agents-md
+.heroui-docs/

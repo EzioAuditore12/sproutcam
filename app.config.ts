@@ -11,6 +11,12 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   userInterfaceStyle: "automatic",
   ios: {
     supportsTablet: true,
+    infoPlist: {
+      NSCameraUsageDescription:
+        "$(PRODUCT_NAME) needs access to your Camera to capture photos and videos.",
+      NSMicrophoneUsageDescription:
+        "$(PRODUCT_NAME) needs access to your Microphone to record audio for video recordings.",
+    },
   },
   android: {
     adaptiveIcon: {
@@ -19,6 +25,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     },
     predictiveBackGestureEnabled: false,
     package: "com.dakshpurohit.sproutcam",
+    permissions: ["android.permission.CAMERA", "android.permission.RECORD_AUDIO"],
   },
   web: {
     output: "single",

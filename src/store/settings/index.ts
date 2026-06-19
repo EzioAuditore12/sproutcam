@@ -6,8 +6,12 @@ import { zustandStorage } from "../storage";
 
 export const useSettingStore = create<SettingStore>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       isOnboardingCompleted: false,
+
+      setOnBoardingCompleted() {
+        set({ isOnboardingCompleted: true });
+      },
     }),
     {
       name: "device-settings",

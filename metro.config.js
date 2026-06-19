@@ -7,8 +7,10 @@ const nativeOnlyModules = new Set([
   "@powersync/react-native",
   "@powersync/op-sqlite",
   "@op-engineering/op-sqlite",
-  "react-native-mmkv",
   "react-native-nitro-modules",
+  "react-native-mmkv",
+  "react-native-nitro-image",
+  "react-native-vision-camera",
 ]);
 
 const webOnlyModules = new Set(["@powersync/web", "@react-native-async-storage/async-storage"]);
@@ -18,7 +20,16 @@ const webModuleMappings = {
   "@powersync/web": "@powersync/web/umd",
 };
 
+config.resolver.sourceExts = [...(config.resolver.sourceExts || []), "mjs", "cjs"];
+
 config.resolver.resolveRequest = (context, moduleName, platform) => {
+  if (moduleName === "zustand" || moduleName.startsWith("zustand/")) {
+    return {
+      filePath: require.resolve(moduleName),
+      type: "sourceFile",
+    };
+  }
+
   if (platform === "web") {
     // Ignore native-only modules on web
     if (nativeOnlyModules.has(moduleName)) {
