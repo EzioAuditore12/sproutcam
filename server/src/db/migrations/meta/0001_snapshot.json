@@ -1,6 +1,6 @@
 {
-  "id": "92d5d23f-83fa-41c9-bb5c-a5c861dfc6c6",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "fefa1e94-bcec-44ab-99ba-407494cf3a20",
+  "prevId": "92d5d23f-83fa-41c9-bb5c-a5c861dfc6c6",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -449,7 +449,15 @@
       "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
+      "uniqueConstraints": {
+        "badges_name_unique": {
+          "name": "badges_name_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "name"
+          ]
+        }
+      },
       "policies": {},
       "checkConstraints": {},
       "isRLSEnabled": false

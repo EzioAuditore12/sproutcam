@@ -11,6 +11,7 @@ const nativeOnlyModules = new Set([
   "react-native-mmkv",
   "react-native-nitro-image",
   "react-native-vision-camera",
+  "react-native-nitro-fetch",
 ]);
 
 const webOnlyModules = new Set(["@powersync/web", "@react-native-async-storage/async-storage"]);

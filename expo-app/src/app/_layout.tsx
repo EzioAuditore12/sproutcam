@@ -23,7 +23,7 @@ export default function RootLayout() {
           }}
         >
           <PowerSyncDatabaseProvider>
-            <Stack screenOptions={{ headerShown: false }} />
+            <Stack initialRouteName="(main)" screenOptions={{ headerShown: false }} />
           </PowerSyncDatabaseProvider>
         </HeroUINativeProvider>
       </ThemeProvider>

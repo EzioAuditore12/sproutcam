@@ -7,7 +7,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   version: "1.0.0",
   orientation: "portrait",
   icon: "./assets/images/icon.png",
-  scheme: "heroui-native-app",
+  scheme: "sproutcam",
   userInterfaceStyle: "automatic",
   ios: {
     supportsTablet: true,
@@ -42,6 +42,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         backgroundColor: "#ffffff",
       },
     ],
+    "expo-secure-store",
+    "react-native-nitro-fetch",
     "@react-native-vector-icons/entypo",
     "@react-native-vector-icons/ant-design",
     "@react-native-vector-icons/fontawesome6",

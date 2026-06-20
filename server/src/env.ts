@@ -24,6 +24,9 @@ const envSchema = z.object({
 
   BETTER_AUTH_SECRET: z.string(),
   BETTER_AUTH_URL: z.url().default("http://localhost:8000"),
+
+  MAILGUN_API_KEY: z.string(),
+  MAILGUN_DOMAIN: z.string(),
 });
 
 const parsedEnv = envSchema.safeParse(process.env);

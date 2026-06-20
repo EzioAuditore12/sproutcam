@@ -1,11 +1,26 @@
+import os from "node:os";
 import { env } from "./env";
 import { app } from "./app";
 
 import { logger } from "./utils/logger";
 
+function getLocalIpAddress() {
+  const interfaces = os.networkInterfaces();
+  for (const name of Object.keys(interfaces)) {
+    for (const iface of interfaces[name] || []) {
+      if (iface.family === "IPv4" && !iface.internal) {
+        return iface.address;
+      }
+    }
+  }
+  return "localhost";
+}
+
 const server = app.listen(env.PORT, () => {
   const { NODE_ENV, HOST, PORT } = env;
+  const localIp = getLocalIpAddress();
   logger.info(`Server (${NODE_ENV}) running on port http://${HOST}:${PORT}`);
+  logger.info(`Local Network: http://${localIp}:${PORT}`);
 });
 
 const onCloseSignal = () => {
