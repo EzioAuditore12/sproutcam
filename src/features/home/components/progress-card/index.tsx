@@ -1,7 +1,7 @@
 import { Typography } from "heroui-native/text";
 import { Card } from "heroui-native/card";
 import { FadeInDown } from "react-native-reanimated";
-import { MotionView, MotionViewProps } from "@/components/motion-view";
+import { MotionView, type MotionViewProps } from "@/components/motion-view";
 
 export interface ProgressCardProps extends Partial<MotionViewProps> {
   title?: string;

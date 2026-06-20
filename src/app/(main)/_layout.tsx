@@ -10,6 +10,8 @@ export default function MainLayout() {
   return (
     <Stack initialRouteName="index">
       <Stack.Screen name="index" options={{ headerShown: false }} />
+
+      <Stack.Screen name="mission" options={{ headerShown: false }} />
     </Stack>
   );
 }

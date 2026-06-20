@@ -3,7 +3,9 @@ import { Typography } from "heroui-native/text";
 import { Card } from "heroui-native/card";
 import { Button } from "heroui-native/button";
 import { FadeInDown } from "react-native-reanimated";
-import { MotionView, MotionViewProps } from "@/components/motion-view";
+import { MotionView, type MotionViewProps } from "@/components/motion-view";
+import { useDebouncedCallback } from "use-debounce";
+
 import { MissionAuraBackground } from "./mission-aura-background";
 
 export interface MissionCardProps extends Partial<MotionViewProps> {
@@ -25,6 +27,14 @@ export function MissionCard({
   onAdventureClick,
   ...props
 }: MissionCardProps) {
+  const handleAdventureClick = useDebouncedCallback(
+    () => {
+      onAdventureClick?.();
+    },
+    500,
+    { leading: true, trailing: false }
+  );
+
   return (
     <MotionView animation={animation} duration={duration} delay={delay} {...props}>
       <Card className="mt-6 border-0 shadow-sm overflow-hidden">
@@ -56,7 +66,7 @@ export function MissionCard({
             </Typography.Paragraph>
           </View>
 
-          <Button onPress={onAdventureClick}>Start Adventure</Button>
+          <Button onPress={handleAdventureClick}>Start Adventure</Button>
         </Card.Footer>
       </Card>
     </MotionView>

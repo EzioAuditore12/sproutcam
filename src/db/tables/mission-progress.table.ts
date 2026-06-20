@@ -8,15 +8,11 @@ export const MISSION_PROGRESS_TABLE_NAME = "mission_progress";
 export const missionProgressTable = sqliteTable(MISSION_PROGRESS_TABLE_NAME, {
   id: text("id")
     .primaryKey()
-    .references(() => missionsTable.id),
+    .references(() => missionsTable.id, { onDelete: "cascade" }),
 
   detectedCount: integer("detected_count").notNull().default(0),
 
-  completed: integer("completed", {
-    mode: "boolean",
-  })
-    .notNull()
-    .default(false),
+  assignedDate: integer("assigned_date", { mode: "timestamp" }).notNull(),
 
   completedAt: integer("completed_at", {
     mode: "timestamp",

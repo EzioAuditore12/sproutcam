@@ -3,7 +3,7 @@ import { createInsertSchema, createSelectSchema, createUpdateSchema } from "driz
 
 import { missionsTable } from "./mission.table";
 
-import { SnowFlakeId } from "@/lib/snowflake";
+import { snowflakeIdGenerator } from "@/lib/snowflake";
 
 export const DETECTIONS_TABLE_NAME = "detections";
 
@@ -12,7 +12,7 @@ export const detectionsTable = sqliteTable(
   {
     id: text("id")
       .primaryKey()
-      .$defaultFn(() => new SnowFlakeId(1).generate()),
+      .$defaultFn(() => snowflakeIdGenerator.generate()),
 
     missionId: text("mission_id")
       .notNull()

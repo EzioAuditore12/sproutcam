@@ -3,7 +3,7 @@ import { createInsertSchema, createSelectSchema, createUpdateSchema } from "driz
 
 import { missionsTable } from "./mission.table";
 
-import { SnowFlakeId } from "@/lib/snowflake";
+import { snowflakeIdGenerator } from "@/lib/snowflake";
 
 export const REWARDS_TABLE_NAME = "rewards";
 
@@ -12,11 +12,11 @@ export const rewardsTable = sqliteTable(
   {
     id: text("id")
       .primaryKey()
-      .$defaultFn(() => new SnowFlakeId(1).generate()),
+      .$defaultFn(() => snowflakeIdGenerator.generate()),
 
     missionId: text("mission_id")
       .notNull()
-      .references(() => missionsTable.id),
+      .references(() => missionsTable.id, { onDelete: "cascade" }),
 
     stars: integer("stars").notNull().default(1),
 

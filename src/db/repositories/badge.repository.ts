@@ -1,25 +1,25 @@
 import { db, type DbType } from "@/db";
 import { count, eq, inArray } from "drizzle-orm";
-import { type InsertMission, type Mission, missionsTable } from "../tables/mission.table";
+import { type InsertBadge, type Badge, badgesTable } from "../tables/badge.table";
 
-export class MissionRepository {
+export class BadgeRepository {
   private readonly database: DbType;
-  private readonly table = missionsTable;
+  private readonly table = badgesTable;
 
   constructor(database: DbType = db) {
     this.database = database;
   }
 
-  public async create(insertMission: InsertMission): Promise<Mission> {
-    return await this.database.insert(this.table).values(insertMission).returning().get();
+  public async create(insertBadge: InsertBadge): Promise<Badge> {
+    return await this.database.insert(this.table).values(insertBadge).returning().get();
   }
 
-  public async createMany(insertMissions: InsertMission[]): Promise<void> {
-    if (insertMissions.length === 0) return;
-    await this.database.insert(this.table).values(insertMissions);
+  public async createMany(insertBadges: InsertBadge[]): Promise<void> {
+    if (insertBadges.length === 0) return;
+    await this.database.insert(this.table).values(insertBadges);
   }
 
-  public async get(id: string): Promise<Mission | undefined> {
+  public async get(id: string): Promise<Badge | undefined> {
     return await this.database.select().from(this.table).where(eq(this.table.id, id)).get();
   }
 
@@ -35,7 +35,7 @@ export class MissionRepository {
     return true;
   }
 
-  public async getManyById(ids: string[]): Promise<Mission[]> {
+  public async getManyById(ids: string[]): Promise<Badge[]> {
     if (ids.length === 0) return [];
     return await this.database.select().from(this.table).where(inArray(this.table.id, ids)).all();
   }
@@ -53,17 +53,17 @@ export class MissionRepository {
     return foundIds;
   }
 
-  public async getManyTitlesById(ids: string[]): Promise<string[]> {
+  public async getManyNamesById(ids: string[]): Promise<string[]> {
     if (ids.length === 0) return [];
     const result = await this.database
-      .select({ title: this.table.title })
+      .select({ name: this.table.name })
       .from(this.table)
       .where(inArray(this.table.id, ids))
       .all();
 
-    const foundTitles = result.map((c) => c.title);
+    const foundNames = result.map((c) => c.name);
 
-    return foundTitles;
+    return foundNames;
   }
 
   public async count(): Promise<number> {
@@ -74,4 +74,4 @@ export class MissionRepository {
   }
 }
 
-export const missionRepository = new MissionRepository();
+export const badgeRepository = new BadgeRepository();

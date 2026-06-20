@@ -6,7 +6,6 @@ import type { PropsWithChildren } from "react";
 import { AppSchema, drizzleSchema } from "./schema";
 
 import { createPowerSyncDatabase } from "./factory";
-
 const dbName = "sproutcam.db";
 
 // Dummy function to extract exact ReturnType for typescript without instantiating early
@@ -16,22 +15,20 @@ const _getDb = () => wrapPowerSyncWithDrizzle({} as PowerSyncDatabase, { schema:
 // We use `any` to allow assigning either the native or web PowerSync Database instance
 // since they both implement the core PowerSync interface.
 export let powerSyncDb: any;
-let _dbInstance: ReturnType<typeof _getDb>;
+export let db: ReturnType<typeof _getDb>;
 
-export const setupDatabase = () => {
+export const setupDatabase = async () => {
   if (powerSyncDb) return;
 
   powerSyncDb = createPowerSyncDatabase(dbName, AppSchema);
 
-  _dbInstance = wrapPowerSyncWithDrizzle(powerSyncDb, {
+  db = wrapPowerSyncWithDrizzle(powerSyncDb, {
     schema: drizzleSchema,
   });
 };
 
 // Call it immediately at the top level
 setupDatabase();
-
-export const db = _dbInstance!;
 
 export function PowerSyncDatabaseProvider({ children }: PropsWithChildren) {
   return <PowerSyncContext.Provider value={powerSyncDb}>{children}</PowerSyncContext.Provider>;

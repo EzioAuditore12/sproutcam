@@ -53,3 +53,5 @@ export class SnowFlakeId {
     return snowflakeId.toString();
   }
 }
+
+export const snowflakeIdGenerator = new SnowFlakeId(1);

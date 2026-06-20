@@ -1,33 +1,40 @@
-import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { index, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 import { createInsertSchema, createSelectSchema, createUpdateSchema } from "drizzle-arktype";
 
-import { SnowFlakeId } from "@/lib/snowflake";
+import { snowflakeIdGenerator } from "@/lib/snowflake";
 
 import { missionType } from "./enums/mission-type.enum";
+import { badgesTable } from "./badge.table";
 
 export const MISSIONS_TABLE_NAME = "missions";
 
-export const missionsTable = sqliteTable(MISSIONS_TABLE_NAME, {
-  id: text("id")
-    .primaryKey()
-    .$defaultFn(() => new SnowFlakeId(1).generate()),
+export const missionsTable = sqliteTable(
+  MISSIONS_TABLE_NAME,
+  {
+    id: text("id")
+      .primaryKey()
+      .$defaultFn(() => snowflakeIdGenerator.generate()),
 
-  title: text("title").notNull(),
+    badgeId: text("badge_id").references(() => badgesTable.id),
 
-  description: text("description"),
+    title: text("title").notNull(),
 
-  type: text("type", {
-    enum: missionType,
-  }).notNull(),
+    description: text("description"),
 
-  targetObject: text("target_object").notNull(),
+    type: text("type", {
+      enum: missionType,
+    }).notNull(),
 
-  requiredCount: integer("required_count").notNull().default(1),
+    targetObject: text("target_object").notNull(),
 
-  rewardStars: integer("reward_stars").notNull().default(1),
+    requiredCount: integer("required_count").notNull().default(1),
 
-  createdAt: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()),
-});
+    rewardStars: integer("reward_stars").notNull().default(1),
+
+    createdAt: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()),
+  },
+  (t) => [index("missions_badge_id_idx").on(t.badgeId)]
+);
 
 export const missionSchema = createSelectSchema(missionsTable);
 export const insertMissionSchema = createInsertSchema(missionsTable);

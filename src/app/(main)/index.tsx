@@ -1,5 +1,6 @@
 import { ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useRouter } from "expo-router";
 
 import { WelcomeCard } from "@/features/home/components/welcome-card";
 import { StarsCard } from "@/features/home/components/stars-card";
@@ -10,6 +11,8 @@ import { BadgeCard } from "@/features/home/components/badge-card";
 export default function HomeScreen() {
   const safeAreaInsets = useSafeAreaInsets();
 
+  const router = useRouter();
+
   return (
     <ScrollView
       contentContainerStyle={{
@@ -17,6 +20,7 @@ export default function HomeScreen() {
         paddingBottom: safeAreaInsets.bottom,
         flexGrow: 1,
       }}
+      contentContainerClassName="px-2"
     >
       <WelcomeCard title="🌱 Welcome Explorer" description="Ready for today's adventure?" />
 
@@ -27,11 +31,11 @@ export default function HomeScreen() {
         missionName="🌸 Find 3 Flowers"
         description="Explore your surroundings and discover three flowers using your camera."
         reward="⭐⭐⭐"
-        onAdventureClick={() => console.log("Adventure started!")}
+        onAdventureClick={() => router.push("/(main)/mission")}
       />
 
       <ProgressCard title="Today's Progress" description="1 of 3 missions completed" />
-      
+
       <BadgeCard title="Latest Badge" badgeName="🌼 Flower Finder" />
     </ScrollView>
   );

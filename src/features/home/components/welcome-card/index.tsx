@@ -1,7 +1,8 @@
 import { Typography } from "heroui-native/text";
 import { Card } from "heroui-native/card";
 import { FadeInLeft, FadeInDown } from "react-native-reanimated";
-import { MotionView, MotionViewProps } from "@/components/motion-view";
+import { MotionView, type MotionViewProps } from "@/components/motion-view";
+
 import { HeaderWaveAnimation } from "./header-wave-animation";
 
 export interface WelcomeCardProps extends Partial<MotionViewProps> {
