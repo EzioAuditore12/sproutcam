@@ -2,6 +2,8 @@ import { ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 
+import { useSession } from "../../lib/auth";
+
 import { WelcomeCard } from "@/features/home/components/welcome-card";
 import { StarsCard } from "@/features/home/components/stars-card";
 import { MissionCard } from "@/features/home/components/mission-card";
@@ -10,8 +12,11 @@ import { BadgeCard } from "@/features/home/components/badge-card";
 
 export default function HomeScreen() {
   const safeAreaInsets = useSafeAreaInsets();
-
   const router = useRouter();
+  const { data } = useSession();
+
+  const userImage = data?.user?.image;
+  const userName = data?.user?.name || data?.user?.email;
 
   return (
     <ScrollView
@@ -22,7 +27,13 @@ export default function HomeScreen() {
       }}
       contentContainerClassName="px-2"
     >
-      <WelcomeCard title="🌱 Welcome Explorer" description="Ready for today's adventure?" />
+      <WelcomeCard
+        title={`🌱 Welcome ${data?.user?.name || "Explorer"}`}
+        description="Ready for today's adventure?"
+        userName={userName}
+        avatarUri={userImage}
+        onAvatarPress={() => router.push("/(main)/setting")}
+      />
 
       <StarsCard title="Total Stars" starsCount={15} />
 

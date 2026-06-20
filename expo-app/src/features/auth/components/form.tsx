@@ -8,13 +8,15 @@ import { TextField } from "heroui-native/text-field";
 import { FieldError } from "heroui-native/field-error";
 import { useForm } from "@tanstack/react-form";
 
-import { authClient, signIn } from "@/lib/auth";
+import { signIn } from "../../../lib/auth";
 
 import { type LoginParam, loginParamSchema } from "../schemas/param.schema";
 
-interface LoginFormProps extends ViewProps {}
+interface LoginFormProps extends ViewProps {
+  handleSubmit: typeof signIn.email;
+}
 
-export function LoginForm({ className, ...props }: LoginFormProps) {
+export function LoginForm({ className, handleSubmit, ...props }: LoginFormProps) {
   const Form = useForm({
     defaultValues: {
       email: "",
@@ -26,7 +28,7 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
     onSubmit: async ({ value }) => {
       console.log("Submitting login form:", value);
 
-      const response = await signIn.email({
+      const response = await handleSubmit({
         email: value.email,
         password: value.password,
       });

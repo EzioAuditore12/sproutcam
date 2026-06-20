@@ -3,15 +3,8 @@ import { ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { LoginForm } from "@/features/auth/components/form";
-import { Button } from "heroui-native/button";
 
-import { authClient } from "@/lib/auth";
-
-const getSession = async () => {
-  const session = await authClient.getSession();
-
-  console.log(session);
-};
+import { signIn } from "../../lib/auth";
 
 export default function LoginScreen() {
   const safeAreaInsets = useSafeAreaInsets();
@@ -27,9 +20,7 @@ export default function LoginScreen() {
     >
       <Typography.Heading>Welcome Back!</Typography.Heading>
 
-      <LoginForm className="w-full max-w-4xl" />
-
-      <Button onPress={getSession}>Test</Button>
+      <LoginForm className="w-full max-w-4xl" handleSubmit={signIn.email} />
     </ScrollView>
   );
 }

@@ -1,17 +1,22 @@
 import { Redirect, Stack } from "expo-router";
+import { LoadingScreen } from "@/components/loading-screen";
 
-import { useSettingStore } from "@/store/settings";
+import { useSession } from "../../lib/auth";
 
 export default function MainLayout() {
-  const { isOnboardingCompleted } = useSettingStore((state) => state);
+  const { data, isPending } = useSession();
 
-  if (!isOnboardingCompleted) return <Redirect href="/onboarding" />;
+  if (isPending) return <LoadingScreen />;
+
+  if (!data) return <Redirect href={"/(auth)/login"} />;
 
   return (
     <Stack initialRouteName="index">
       <Stack.Screen name="index" options={{ headerShown: false }} />
 
       <Stack.Screen name="mission" options={{ headerShown: false }} />
+
+      <Stack.Screen name="setting" options={{ headerShown: false }} />
     </Stack>
   );
 }

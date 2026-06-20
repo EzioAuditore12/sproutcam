@@ -28,13 +28,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(helmet);
 
-app.all("/api/auth/{*any}", toNodeHandler(auth));
 app.use(rateLimiter);
 
 // Request logging
 app.use(requestLogger);
 
 // Routes
+app.all("/api/auth/{*any}", toNodeHandler(auth));
+
 app.use("/health-check", healthCheckRouter);
 app.use("/mission", missionRouter);
 
