@@ -8,9 +8,9 @@ const envSchema = z.object({
 
   HOST: z.string().min(1).default("localhost"),
 
-  PORT: z.coerce.number().int().positive().default(8080),
+  PORT: z.coerce.number().int().positive().default(8000),
 
-  CORS_ORIGIN: z.string().default("http://localhost:8080"),
+  CORS_ORIGIN: z.string().default("http://localhost:8081"),
 
   COMMON_RATE_LIMIT_MAX_REQUESTS: z.coerce
     .number()
@@ -19,6 +19,11 @@ const envSchema = z.object({
     .default(1000),
 
   COMMON_RATE_LIMIT_WINDOW_MS: z.coerce.number().int().positive().default(1000),
+
+  DATABASE_URL: z.string(),
+
+  BETTER_AUTH_SECRET: z.string(),
+  BETTER_AUTH_URL: z.url().default("http://localhost:8000"),
 });
 
 const parsedEnv = envSchema.safeParse(process.env);

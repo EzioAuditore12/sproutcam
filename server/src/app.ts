@@ -1,6 +1,7 @@
 import cors from "cors";
 import express, { type Express } from "express";
 import cookieParser from "cookie-parser";
+import { toNodeHandler } from "better-auth/node";
 
 import { healthCheckRouter } from "@/routes/health-check.route";
 import { openAPIRouter } from "@/lib/open-api/open-api-router";
@@ -12,10 +13,14 @@ import helmet from "@/middlewares/helmet.middleware";
 
 import { env } from "@/env";
 
+import { auth } from "./lib/auth";
+
 const app: Express = express();
 
 // Set the application to trust the reverse proxy
 app.set("trust proxy", true);
+
+app.all("/api/auth/{*any}", toNodeHandler(auth));
 
 // Middlewares
 app.use(express.json());
