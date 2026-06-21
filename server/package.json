@@ -23,6 +23,7 @@
   "packageManager": "pnpm@10.15.0",
   "dependencies": {
     "@asteasolutions/zod-to-openapi": "^8.5.0",
+    "@better-auth/expo": "^1.6.20",
     "@sapphire/snowflake": "^3.5.5",
     "@scalar/express-api-reference": "^0.10.4",
     "better-auth": "^1.6.20",
