@@ -27,5 +27,11 @@ export const auth = betterAuth({
       });
     },
   },
+  advanced: {
+    defaultCookieAttributes: {
+      sameSite: env.isProduction ? "none" : "lax",
+      secure: env.isProduction,
+    },
+  },
   plugins: [expo(), openAPI(), bearer()],
 });

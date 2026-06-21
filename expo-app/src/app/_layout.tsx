@@ -6,6 +6,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
 import { useColorScheme } from "react-native";
 import { ThemeProvider, DarkTheme, DefaultTheme } from "expo-router/react-navigation";
+import { KeyboardProvider } from "react-native-keyboard-controller";
 
 import { PowerSyncDatabaseProvider } from "@/db";
 import { TanstackReactQueryClientProvider } from "@/lib/tanstack/react-query";
@@ -23,11 +24,13 @@ export default function RootLayout() {
             },
           }}
         >
-          <TanstackReactQueryClientProvider>
-            <PowerSyncDatabaseProvider>
-              <Stack initialRouteName="(main)" screenOptions={{ headerShown: false }} />
-            </PowerSyncDatabaseProvider>
-          </TanstackReactQueryClientProvider>
+          <KeyboardProvider>
+            <TanstackReactQueryClientProvider>
+              <PowerSyncDatabaseProvider>
+                <Stack initialRouteName="(main)" screenOptions={{ headerShown: false }} />
+              </PowerSyncDatabaseProvider>
+            </TanstackReactQueryClientProvider>
+          </KeyboardProvider>
         </HeroUINativeProvider>
       </ThemeProvider>
       <StatusBar style="auto" />
