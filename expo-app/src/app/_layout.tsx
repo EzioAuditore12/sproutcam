@@ -8,6 +8,7 @@ import { useColorScheme } from "react-native";
 import { ThemeProvider, DarkTheme, DefaultTheme } from "expo-router/react-navigation";
 
 import { PowerSyncDatabaseProvider } from "@/db";
+import { TanstackReactQueryClientProvider } from "@/lib/tanstack/react-query";
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -22,9 +23,11 @@ export default function RootLayout() {
             },
           }}
         >
-          <PowerSyncDatabaseProvider>
-            <Stack initialRouteName="(main)" screenOptions={{ headerShown: false }} />
-          </PowerSyncDatabaseProvider>
+          <TanstackReactQueryClientProvider>
+            <PowerSyncDatabaseProvider>
+              <Stack initialRouteName="(main)" screenOptions={{ headerShown: false }} />
+            </PowerSyncDatabaseProvider>
+          </TanstackReactQueryClientProvider>
         </HeroUINativeProvider>
       </ThemeProvider>
       <StatusBar style="auto" />

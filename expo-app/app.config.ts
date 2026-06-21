@@ -43,6 +43,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       },
     ],
     "expo-secure-store",
+    "expo-background-task",
     "react-native-nitro-fetch",
     "@react-native-vector-icons/entypo",
     "@react-native-vector-icons/ant-design",

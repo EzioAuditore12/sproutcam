@@ -1,4 +1,3 @@
-import React from "react";
 import { View, FlatList } from "react-native";
 import { Typography } from "heroui-native/text";
 
@@ -24,7 +23,7 @@ export const MissionList = ({ onMissionPress }: MissionListProps) => {
 
   const renderItem = ({ item }: { item: Mission }) => (
     <View className="mb-4 p-4 bg-white rounded-lg border border-gray-200">
-      <Typography.Heading level={4}>{item.title}</Typography.Heading>
+      <Typography.Heading type="h4">{item.title}</Typography.Heading>
       {item.description && (
         <Typography.Paragraph className="text-gray-600 mt-1">
           {item.description}
