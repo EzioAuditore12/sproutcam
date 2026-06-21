@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npx tsc && tsup",
+    "build": "tsc && tsup",
     "start:dev": "node --import=tsx --watch src/index.ts",
     "start:prod": "node dist/index.js",
     "better-auth:generate": "pnpm dlx @better-auth/cli generate --output ./src/db/schemas/auth.schema.ts",
@@ -20,6 +20,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "packageManager": "pnpm@10.15.0",
   "dependencies": {
     "@asteasolutions/zod-to-openapi": "^8.5.0",
     "@sapphire/snowflake": "^3.5.5",
