@@ -5,13 +5,18 @@ import {
 
 import { healthCheckRegistry } from "@/routes/health-check.route";
 import { missionRegistry } from "@/routes/mission.route";
+import { syncRegistry } from "@/routes/sync.route";
 
 export type OpenAPIDocument = ReturnType<
   OpenApiGeneratorV3["generateDocument"]
 >;
 
 export function generateOpenAPIDocument(): OpenAPIDocument {
-  const registry = new OpenAPIRegistry([healthCheckRegistry, missionRegistry]);
+  const registry = new OpenAPIRegistry([
+    healthCheckRegistry,
+    missionRegistry,
+    syncRegistry,
+  ]);
 
   const generator = new OpenApiGeneratorV3(registry.definitions);
 

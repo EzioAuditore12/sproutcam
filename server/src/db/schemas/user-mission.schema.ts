@@ -1,5 +1,4 @@
 import {
-  boolean,
   index,
   integer,
   pgTable,
@@ -33,11 +32,9 @@ export const userMission = pgTable(
 
     progress: integer("progress").notNull().default(0),
 
-    completed: boolean("completed").default(false).notNull(),
+    claimedAt: timestamp("claimed_at"),
 
     completedAt: timestamp("completed_at"),
-
-    claimedAt: timestamp("claimed_at"),
 
     createdAt: timestamp("created_at").defaultNow().notNull(),
 
@@ -47,8 +44,8 @@ export const userMission = pgTable(
     primaryKey({
       columns: [t.userId, t.missionId],
     }),
-    index("user_missions_user_id_idx").on(t.userId),
     index("user_missions_mission_id_idx").on(t.missionId),
+    index("user_missions_user_updated_at_idx").on(t.userId, t.updatedAt),
   ],
 );
 

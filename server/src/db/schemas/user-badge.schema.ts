@@ -4,6 +4,7 @@ import {
   timestamp,
   uuid,
   uniqueIndex,
+  index,
 } from "drizzle-orm/pg-core";
 import {
   createInsertSchema,
@@ -30,7 +31,10 @@ export const userBadge = pgTable(
 
     earnedAt: timestamp("earned_at").defaultNow().notNull(),
   },
-  (t) => [uniqueIndex("user_badges_user_badge_unique").on(t.userId, t.badgeId)],
+  (t) => [
+    uniqueIndex("user_badges_user_badge_unique").on(t.userId, t.badgeId),
+    index("user_badges_user_earned_at_idx").on(t.userId, t.earnedAt),
+  ],
 );
 
 export const userBadgeSchema = createSelectSchema(userBadge);

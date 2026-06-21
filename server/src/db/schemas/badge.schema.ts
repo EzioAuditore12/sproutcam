@@ -1,4 +1,4 @@
-import { pgTable, timestamp, uuid, varchar } from "drizzle-orm/pg-core";
+import { pgTable, timestamp, uuid, varchar, index } from "drizzle-orm/pg-core";
 import {
   createSelectSchema,
   createInsertSchema,
@@ -24,7 +24,9 @@ export const badge = pgTable(BADGES_TABLE_NAME, {
   updatedAt: timestamp("updated_at")
     .$onUpdateFn(() => new Date())
     .notNull(),
-});
+}, (t) => [
+  index("badges_updated_at_idx").on(t.updatedAt),
+]);
 
 export const badgeSchema = createSelectSchema(badge);
 export const updateBadgeSchema = createUpdateSchema(badge);

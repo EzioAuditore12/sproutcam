@@ -4,7 +4,7 @@ import {
   type Mission,
   mission,
 } from "@/db/schemas/mission.schema";
-import { eq } from "drizzle-orm";
+import { eq, gt } from "drizzle-orm";
 
 export class MissionService {
   private readonly database = db;
@@ -31,6 +31,17 @@ export class MissionService {
       .from(this.table)
       .where(eq(this.table.id, id))
       .then((res) => res[0] ?? null);
+  }
+
+  public async getAll(): Promise<Mission[]> {
+    return await this.database.select().from(this.table);
+  }
+
+  public async getUpdatedSince(lastSyncedAt: Date): Promise<Mission[]> {
+    return await this.database
+      .select()
+      .from(this.table)
+      .where(gt(this.table.updatedAt, lastSyncedAt));
   }
 }
 

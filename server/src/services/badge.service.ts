@@ -1,4 +1,5 @@
 import { db } from "@/db";
+import { gt } from "drizzle-orm";
 
 import { badge, type Badge, type InsertBadge } from "@/db/schemas/badge.schema";
 
@@ -23,6 +24,13 @@ export class BadgeService {
 
   public async getAll(): Promise<Badge[]> {
     return await this.database.select().from(this.table);
+  }
+
+  public async getUpdatedSince(lastSyncedAt: Date): Promise<Badge[]> {
+    return await this.database
+      .select()
+      .from(this.table)
+      .where(gt(this.table.updatedAt, lastSyncedAt));
   }
 }
 

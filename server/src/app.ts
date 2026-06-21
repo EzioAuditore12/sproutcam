@@ -11,10 +11,9 @@ import rateLimiter from "@/middlewares/rate-limiter.middleware";
 import requestLogger from "@/middlewares/request-logger.middleware";
 import helmet from "@/middlewares/helmet.middleware";
 
-import { env } from "@/env";
-
 import { auth } from "./lib/auth";
-import { missionRouter } from "./routes/mission.route";
+import { missionPrefix, missionRouter } from "./routes/mission.route";
+import { syncPrefix, syncRouter } from "./routes/sync.route";
 
 const app: Express = express();
 
@@ -37,7 +36,8 @@ app.use(requestLogger);
 app.all("/api/auth/{*any}", toNodeHandler(auth));
 
 app.use("/health-check", healthCheckRouter);
-app.use("/mission", missionRouter);
+app.use(missionPrefix, missionRouter);
+app.use(syncPrefix, syncRouter);
 
 // Swagger UI
 app.use(openAPIRouter);

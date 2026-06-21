@@ -2,7 +2,7 @@ import { Response } from "express";
 import { NotFoundError } from "express-error-toolkit";
 
 import { missionService } from "@/services/mission.service";
-import { userMissionService } from "@/services/user_mission.service";
+import { userMissionService } from "@/services/user-mission.service";
 
 import type { SubscribeMissionRequest } from "@/validators/missions/subscribe/request.schema";
 import { StatusCodes } from "http-status-codes";

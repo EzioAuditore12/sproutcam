@@ -17,7 +17,6 @@ import { DiscordSnowflake } from "@sapphire/snowflake";
 import { z } from "zod";
 
 import { badge } from "./badge.schema";
-import { user } from "./auth.schema";
 
 import { missionTypeEnum } from "../enums/mission-type.enum";
 
@@ -48,7 +47,10 @@ export const mission = pgTable(
 
     updatedAt: timestamp().$onUpdateFn(() => new Date()),
   },
-  (t) => [index("missions_badge_id_idx").on(t.badgeId)],
+  (t) => [
+    index("missions_badge_id_idx").on(t.badgeId),
+    index("missions_updated_at_idx").on(t.updatedAt),
+  ],
 );
 
 export const missionSchema = createSelectSchema(mission);

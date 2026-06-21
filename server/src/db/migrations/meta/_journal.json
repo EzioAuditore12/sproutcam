@@ -29,6 +29,20 @@
       "when": 1781963017411,
       "tag": "0003_amusing_thing",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1782012782357,
+      "tag": "0004_sticky_dragon_lord",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1782014829111,
+      "tag": "0005_noisy_genesis",
+      "breakpoints": true
     }
   ]
 }
