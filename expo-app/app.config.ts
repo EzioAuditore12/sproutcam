@@ -33,14 +33,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     bundler: "metro",
   },
   plugins: [
-    [
-      "expo-build-properties",
-      {
-        android: {
-          compileSdkVersion: 36,
-        },
-      },
-    ],
     "expo-router",
     [
       "expo-splash-screen",

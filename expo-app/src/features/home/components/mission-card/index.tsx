@@ -56,12 +56,16 @@ export function MissionCard({
         </Card.Body>
 
         <Card.Footer className="flex-row items-center justify-between pt-4 z-10">
-          <View>
+          <View className="flex-1 mr-4">
             <Typography.Paragraph type="body-xs" color="muted">
               Reward
             </Typography.Paragraph>
 
-            <Typography.Paragraph type="body" weight="semibold" className="text-lg text-amber-500">
+            <Typography.Paragraph
+              type="body"
+              weight="semibold"
+              className="text-lg text-amber-500 flex-wrap"
+            >
               {reward}
             </Typography.Paragraph>
           </View>
