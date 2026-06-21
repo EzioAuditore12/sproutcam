@@ -20,7 +20,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.15.0",
+  "packageManager": "pnpm@9.15.4",
   "dependencies": {
     "@asteasolutions/zod-to-openapi": "^8.5.0",
     "@sapphire/snowflake": "^3.5.5",
