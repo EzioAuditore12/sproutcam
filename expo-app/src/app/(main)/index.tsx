@@ -42,7 +42,7 @@ export default function HomeScreen() {
         missionName="🌸 Find 3 Flowers"
         description="Explore your surroundings and discover three flowers using your camera."
         reward="⭐⭐⭐"
-        onAdventureClick={() => router.push("/(auth)/login")}
+        onAdventureClick={() => router.push("/(main)/mission")}
       />
 
       <ProgressCard title="Today's Progress" description="1 of 3 missions completed" />

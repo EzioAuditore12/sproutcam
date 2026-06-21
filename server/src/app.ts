@@ -14,6 +14,7 @@ import helmet from "@/middlewares/helmet.middleware";
 import { auth } from "./lib/auth";
 import { missionPrefix, missionRouter } from "./routes/mission.route";
 import { syncPrefix, syncRouter } from "./routes/sync.route";
+import { userPrefix, userRouter } from "./routes/user.route";
 
 const app: Express = express();
 
@@ -38,6 +39,7 @@ app.all("/api/auth/{*any}", toNodeHandler(auth));
 app.use("/health-check", healthCheckRouter);
 app.use(missionPrefix, missionRouter);
 app.use(syncPrefix, syncRouter);
+app.use(userPrefix, userRouter);
 
 // Swagger UI
 app.use(openAPIRouter);

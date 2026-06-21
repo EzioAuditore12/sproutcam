@@ -5,6 +5,7 @@ import { useRouter } from "expo-router";
 import { Avatar } from "heroui-native/avatar";
 
 import { useSession, authClient } from "../../lib/auth";
+import { getUserProfileApi } from "@/features/user/api/user-profile.api";
 
 export default function SettingScreen() {
   const { data } = useSession();
@@ -46,6 +47,16 @@ export default function SettingScreen() {
           No user data available.
         </Typography.Paragraph>
       )}
+
+      <Button
+        onPress={async () => {
+          const response = await getUserProfileApi();
+
+          console.log(response);
+        }}
+      >
+        Get Profile
+      </Button>
     </View>
   );
 }

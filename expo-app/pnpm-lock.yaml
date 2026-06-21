@@ -164,6 +164,9 @@ importers:
       react-native-worklets:
         specifier: 0.8.3
         version: 0.8.3(@babel/core@7.29.7)(@react-native/metro-config@0.85.3(@babel/core@7.29.7))(react-native@0.85.3(@babel/core@7.29.7)(@react-native/metro-config@0.85.3(@babel/core@7.29.7))(@types/react@19.2.17)(react@19.2.3))(react@19.2.3)
+      standard-parse:
+        specifier: ^0.5.0
+        version: 0.5.0(arktype@2.2.1)(zod@4.4.3)
       tailwind-merge:
         specifier: ^3.4.0
         version: 3.6.0
@@ -4421,6 +4424,23 @@ packages:
 
   standard-navigation@0.0.5:
     resolution: {integrity: sha512-YAmzwAiiQVocZxO/VGPFiQHcu5pKiz09QIGC0MK6aRMoa3E0QkoTQgcqJr7ZZ3OMiNhu4DkaGElFI5htjOIDbw==}
+
+  standard-parse@0.5.0:
+    resolution: {integrity: sha512-sEje1JJI5jwev9DU1iW1HyIk6iCuyXmtlvVPBprd0jZ+rcf1aUQFqGGJ3DLOf0nxQAY+4uTfU3W1CL+KFM0KnA==}
+    peerDependencies:
+      arktype: ^2.0.0
+      valibot: ^1.0.0
+      vitest: '>=3.2.0'
+      zod: '>= 3.25.0'
+    peerDependenciesMeta:
+      arktype:
+        optional: true
+      valibot:
+        optional: true
+      vitest:
+        optional: true
+      zod:
+        optional: true
 
   statuses@1.5.0:
     resolution: {integrity: sha512-OpZ3zP+jT1PI7I8nemJX4AKmAX070ZkYPVWV/AaKTJl+tXCTGyVdC1a4SL8RUQYEwk/f34ZX8UTykN68FwrqAA==}
@@ -9594,6 +9614,13 @@ snapshots:
       type-fest: 0.7.1
 
   standard-navigation@0.0.5: {}
+
+  standard-parse@0.5.0(arktype@2.2.1)(zod@4.4.3):
+    dependencies:
+      '@standard-schema/spec': 1.1.0
+    optionalDependencies:
+      arktype: 2.2.1
+      zod: 4.4.3
 
   statuses@1.5.0: {}
 
