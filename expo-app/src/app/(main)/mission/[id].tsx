@@ -3,8 +3,7 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import { Typography } from "heroui-native/text";
 import { Button } from "heroui-native/button";
 import { Card } from "heroui-native/card";
-import { db } from "@/db";
-import { userMissionsTable } from "@/db/tables/user-mission.table";
+
 import { useMissionById } from "@/features/mission/hooks/database/use-mission-by-id";
 
 export default function MissionDetailScreen() {
@@ -22,36 +21,6 @@ export default function MissionDetailScreen() {
   }
 
   const currentProgress = mission.progress || 0;
-  const isCompleted = currentProgress >= mission.requiredCount || mission.completedAt != null;
-
-  const handleSimulateFind = async () => {
-    const newProgress = currentProgress + 1;
-    const completedAt = newProgress >= mission.requiredCount ? new Date() : null;
-
-    try {
-      await db
-        .insert(userMissionsTable)
-        .values({
-          id: mission.id,
-          progress: newProgress,
-          completedAt: completedAt,
-        })
-        .onConflictDoUpdate({
-          target: userMissionsTable.id,
-          set: {
-            progress: newProgress,
-            completedAt: completedAt,
-            updatedAt: new Date(),
-          },
-        });
-
-      if (completedAt) {
-        router.replace("/(main)/mission/complete");
-      }
-    } catch (error) {
-      console.error("Failed to update mission progress", error);
-    }
-  };
 
   return (
     <View className="flex-1 p-4 items-center">
@@ -76,19 +45,13 @@ export default function MissionDetailScreen() {
       </Card>
 
       <View className="flex-1 justify-end w-full pb-8">
-        {!isCompleted ? (
-          <Button onPress={handleSimulateFind} size="lg" className="w-full bg-amber-500">
-            Simulate Find Object
-          </Button>
-        ) : (
-          <Button
-            onPress={() => router.replace("/(main)/mission/complete")}
-            size="lg"
-            className="w-full bg-green-500"
-          >
-            Mission Completed!
-          </Button>
-        )}
+        <Button
+          onPress={() => router.replace("/(main)/mission/camera-screen")}
+          size="lg"
+          className="w-full bg-green-500"
+        >
+          Go To Mission
+        </Button>
       </View>
     </View>
   );
