@@ -8,7 +8,7 @@ import { sendEmail } from "@/utils/email";
 import { env } from "@/env";
 
 export const auth = betterAuth({
-  trustedOrigins: [env.CORS_ORIGIN],
+  trustedOrigins: env.CORS_ORIGIN,
   database: drizzleAdapter(db, {
     provider: "pg",
   }),

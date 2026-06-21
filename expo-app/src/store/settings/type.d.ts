@@ -5,5 +5,7 @@ export interface SettingStore {
   setOnBoardingCompleted: () => void;
 
   getLastSyncedAt: () => Date | undefined;
-  setLastSyncedAt: (lastSyncedAt: Date) => void;
+  setLastSyncedAt: (lastSyncedAt: Date | undefined) => void;
+
+  logout: () => Promise<void>;
 }

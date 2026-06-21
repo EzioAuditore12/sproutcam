@@ -10,10 +10,19 @@ import { MissionCard } from "@/features/home/components/mission-card";
 import { ProgressCard } from "@/features/home/components/progress-card";
 import { BadgeCard } from "@/features/home/components/badge-card";
 
+import { useTodayMission } from "@/features/home/hooks/database/use-home-missions";
+import { useHomeProgress, useTotalStars } from "@/features/home/hooks/database/use-home-progress";
+import { useLatestBadge } from "@/features/home/hooks/database/use-latest-badge";
+
 export default function HomeScreen() {
   const safeAreaInsets = useSafeAreaInsets();
   const router = useRouter();
   const { data } = useSession();
+
+  const { mission, isLoading: isMissionLoading } = useTodayMission();
+  const { progressText } = useHomeProgress();
+  const { totalStars } = useTotalStars();
+  const { latestBadge } = useLatestBadge();
 
   const userImage = data?.user?.image;
   const userName = data?.user?.name || data?.user?.email;
@@ -35,19 +44,30 @@ export default function HomeScreen() {
         onAvatarPress={() => router.push("/(main)/setting")}
       />
 
-      <StarsCard title="Total Stars" starsCount={15} />
+      <StarsCard title="Total Stars" starsCount={totalStars} />
 
       <MissionCard
         title="Today's Mission"
-        missionName="🌸 Find 3 Flowers"
-        description="Explore your surroundings and discover three flowers using your camera."
-        reward="⭐⭐⭐"
+        missionName={
+          isMissionLoading ? "Loading..." : mission ? mission.title : "No missions available"
+        }
+        description={
+          isMissionLoading
+            ? "..."
+            : mission
+              ? mission.description || "Complete this mission to earn stars!"
+              : "You have completed all missions!"
+        }
+        reward={mission ? "⭐".repeat(mission.rewardStars) : "-"}
         onAdventureClick={() => router.push("/(main)/mission")}
       />
 
-      <ProgressCard title="Today's Progress" description="1 of 3 missions completed" />
+      <ProgressCard title="Today's Progress" description={progressText} />
 
-      <BadgeCard title="Latest Badge" badgeName="🌼 Flower Finder" />
+      <BadgeCard
+        title="Latest Badge"
+        badgeName={latestBadge ? latestBadge.name : "No badges yet"}
+      />
     </ScrollView>
   );
 }

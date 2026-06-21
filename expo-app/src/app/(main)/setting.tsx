@@ -1,20 +1,15 @@
 import { View } from "react-native";
 import { Typography } from "heroui-native/text";
 import { Button } from "heroui-native/button";
-import { useRouter } from "expo-router";
 import { Avatar } from "heroui-native/avatar";
 
-import { useSession, authClient } from "../../lib/auth";
+import { useSession } from "../../lib/auth";
 import { getUserProfileApi } from "@/features/user/api/user-profile.api";
+import { useSettingStore } from "@/store/settings";
 
 export default function SettingScreen() {
   const { data } = useSession();
-  const router = useRouter();
-
-  const handleSignOut = async () => {
-    await authClient.signOut();
-    router.replace("/(auth)/login");
-  };
+  const { logout } = useSettingStore();
 
   return (
     <View className="flex-1 px-4 py-8 items-center justify-center">
@@ -38,7 +33,7 @@ export default function SettingScreen() {
             {data.user.email}
           </Typography.Paragraph>
 
-          <Button className="w-full" variant="danger" onPress={handleSignOut}>
+          <Button className="w-full" variant="danger" onPress={logout}>
             Log Out
           </Button>
         </View>

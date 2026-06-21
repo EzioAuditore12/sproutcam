@@ -10,7 +10,10 @@ const envSchema = z.object({
 
   PORT: z.coerce.number().int().positive().default(8000),
 
-  CORS_ORIGIN: z.string().default("http://localhost:8081"),
+  CORS_ORIGIN: z
+    .string()
+    .default("http://localhost:8081,sproutcam://")
+    .transform((val) => val.split(",").map((v) => v.trim())),
 
   COMMON_RATE_LIMIT_MAX_REQUESTS: z.coerce
     .number()

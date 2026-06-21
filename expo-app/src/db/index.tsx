@@ -1,5 +1,6 @@
 import { PowerSyncContext, usePowerSync } from "@powersync/react";
 import type { PowerSyncDatabase } from "@powersync/react-native";
+import type { PowerSyncDatabase as PowerSyncDatabaseWeb } from "@powersync/web";
 import { wrapPowerSyncWithDrizzle } from "@powersync/drizzle-driver";
 import type { PropsWithChildren } from "react";
 
@@ -14,7 +15,7 @@ const _getDb = () => wrapPowerSyncWithDrizzle({} as PowerSyncDatabase, { schema:
 
 // We use `any` to allow assigning either the native or web PowerSync Database instance
 // since they both implement the core PowerSync interface.
-export let powerSyncDb: any;
+export let powerSyncDb: PowerSyncDatabase | PowerSyncDatabaseWeb;
 export let db: ReturnType<typeof _getDb>;
 
 export const setupDatabase = async () => {

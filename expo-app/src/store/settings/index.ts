@@ -1,8 +1,12 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
+import { router } from "expo-router";
 
 import type { SettingStore } from "./type";
 import { zustandStorage } from "../storage";
+
+import { authClient } from "../../lib/auth";
+import { powerSyncDb } from "@/db";
 
 export const useSettingStore = create<SettingStore>()(
   persist(
@@ -23,7 +27,19 @@ export const useSettingStore = create<SettingStore>()(
       },
 
       setLastSyncedAt(lastSyncedAt) {
-        set({ lastSyncedAt: lastSyncedAt.getTime() });
+        set({ lastSyncedAt: lastSyncedAt?.getTime() ?? 0 });
+      },
+
+      async logout() {
+        const { setLastSyncedAt } = get();
+
+        setLastSyncedAt(undefined);
+
+        await authClient.signOut();
+
+        await powerSyncDb.disconnectAndClear();
+
+        router.replace("/(auth)/login");
       },
     }),
     {
