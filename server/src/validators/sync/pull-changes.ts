@@ -12,7 +12,7 @@ const tableChangesSchema = <T extends z.ZodTypeAny>(schema: T) =>
   });
 
 const pullMissionSchema = missionSchema.extend({
-  id: z.coerce.bigint(),
+  id: z.string(),
 });
 
 const pullUserMissionSchema = userMissionSchema

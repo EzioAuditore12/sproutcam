@@ -1,6 +1,6 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { openAPI } from "better-auth/plugins";
+import { openAPI, bearer } from "better-auth/plugins";
 
 import { db } from "@/db";
 import { sendEmail } from "@/utils/email";
@@ -26,5 +26,5 @@ export const auth = betterAuth({
       });
     },
   },
-  plugins: [openAPI()],
+  plugins: [openAPI(), bearer()],
 });

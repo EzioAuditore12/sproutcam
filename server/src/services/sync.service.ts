@@ -109,9 +109,11 @@ export class SyncService {
       ? await this.missionService.getUpdatedSince(lastSyncedAt)
       : await this.missionService.getAll();
 
+    const mapped = updated.map((m) => ({ ...m, id: String(m.id) }));
+
     return {
-      created: !lastSyncedAt ? updated : [],
-      updated: lastSyncedAt ? updated : [],
+      created: !lastSyncedAt ? mapped : [],
+      updated: lastSyncedAt ? mapped : [],
       deleted: [], // Add tombstone logic if missions can be deleted
     };
   }
@@ -121,9 +123,11 @@ export class SyncService {
       ? await this.badgeService.getUpdatedSince(lastSyncedAt)
       : await this.badgeService.getAll();
 
+    const mapped = updated.map((b) => ({ ...b, id: String(b.id) }));
+
     return {
-      created: !lastSyncedAt ? updated : [],
-      updated: lastSyncedAt ? updated : [],
+      created: !lastSyncedAt ? mapped : [],
+      updated: lastSyncedAt ? mapped : [],
       deleted: [], // Add tombstone logic if badges can be deleted
     };
   }
@@ -133,7 +137,10 @@ export class SyncService {
       userId,
       lastSyncedAt,
     );
-    const mapped = updated.map((u) => ({ ...u, id: String(u.missionId) }));
+    const mapped = updated.map((u) => {
+      const { missionId, ...rest } = u as any;
+      return { ...rest, id: String(missionId) };
+    });
 
     return {
       created: !lastSyncedAt ? mapped : [],
@@ -147,7 +154,10 @@ export class SyncService {
       userId,
       lastSyncedAt,
     );
-    const mapped = updated.map((u) => ({ ...u, id: String(u.badgeId) }));
+    const mapped = updated.map((u) => {
+      const { badgeId, ...rest } = u as any;
+      return { ...rest, id: String(badgeId) };
+    });
 
     return {
       created: !lastSyncedAt ? mapped : [],
