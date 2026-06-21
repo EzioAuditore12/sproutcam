@@ -20,8 +20,12 @@ export const missionsTable = sqliteTable(
     targetObject: text("target_object").notNull(),
     requiredCount: integer("required_count").notNull().default(1),
     rewardStars: integer("reward_stars").notNull().default(1),
-    createdAt: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()),
-    updatedAt: integer("updated_at", { mode: "timestamp" }).$onUpdateFn(() => new Date()),
+    createdAt: integer("created_at", { mode: "timestamp" })
+      .notNull()
+      .$defaultFn(() => new Date()),
+    updatedAt: integer("updated_at", { mode: "timestamp" })
+      .notNull()
+      .$onUpdateFn(() => new Date()),
   },
   (t) => [
     index("missions_badge_id_idx").on(t.badgeId),
