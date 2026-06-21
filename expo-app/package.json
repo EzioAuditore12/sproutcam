@@ -40,6 +40,7 @@
     "drizzle-orm": "^0.45.2",
     "expo": "~56.0.12",
     "expo-background-task": "~56.0.19",
+    "expo-build-properties": "~56.0.19",
     "expo-constants": "~56.0.16",
     "expo-crypto": "~56.0.4",
     "expo-linear-gradient": "~56.0.4",

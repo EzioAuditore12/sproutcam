@@ -13,9 +13,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     supportsTablet: true,
     infoPlist: {
       NSCameraUsageDescription:
-        "$(PRODUCT_NAME) needs access to your Camera to capture photos and videos.",
+        "SproutCam needs access to your Camera to capture photos and videos.",
       NSMicrophoneUsageDescription:
-        "$(PRODUCT_NAME) needs access to your Microphone to record audio for video recordings.",
+        "SproutCam needs access to your Microphone to record audio for video recordings.",
     },
   },
   android: {
@@ -33,6 +33,14 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     bundler: "metro",
   },
   plugins: [
+    [
+      "expo-build-properties",
+      {
+        android: {
+          compileSdkVersion: 36,
+        },
+      },
+    ],
     "expo-router",
     [
       "expo-splash-screen",
