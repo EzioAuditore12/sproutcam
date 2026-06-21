@@ -31,31 +31,47 @@ export class UserMissionService {
       .returning();
   }
 
-  public async getUpdatedSince(userId: string, lastSyncedAt?: Date): Promise<UserMission[]> {
+  public async getUpdatedSince(
+    userId: string,
+    lastSyncedAt?: Date,
+  ): Promise<UserMission[]> {
     if (!lastSyncedAt) {
       return await this.database
         .select()
         .from(this.table)
         .where(eq(this.table.userId, userId));
     }
-    
+
     return await this.database
       .select()
       .from(this.table)
-      .where(and(eq(this.table.userId, userId), gt(this.table.updatedAt, lastSyncedAt)));
+      .where(
+        and(
+          eq(this.table.userId, userId),
+          gt(this.table.updatedAt, lastSyncedAt),
+        ),
+      );
   }
 
-  public async update(userId: string, missionId: bigint, updateData: UpdateUserMission) {
+  public async update(
+    userId: string,
+    missionId: bigint,
+    updateData: UpdateUserMission,
+  ) {
     return await this.database
       .update(this.table)
       .set(updateData)
-      .where(and(eq(this.table.userId, userId), eq(this.table.missionId, missionId)));
+      .where(
+        and(eq(this.table.userId, userId), eq(this.table.missionId, missionId)),
+      );
   }
-  
+
   public async delete(userId: string, missionId: bigint) {
     return await this.database
       .delete(this.table)
-      .where(and(eq(this.table.userId, userId), eq(this.table.missionId, missionId)));
+      .where(
+        and(eq(this.table.userId, userId), eq(this.table.missionId, missionId)),
+      );
   }
 }
 

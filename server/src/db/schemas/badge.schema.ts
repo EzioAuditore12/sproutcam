@@ -10,23 +10,25 @@ import { badgeIconEnum } from "../enums/badge-icon.enum";
 
 export const BADGES_TABLE_NAME = "badges";
 
-export const badge = pgTable(BADGES_TABLE_NAME, {
-  id: uuid("id").primaryKey().defaultRandom(),
+export const badge = pgTable(
+  BADGES_TABLE_NAME,
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
 
-  name: varchar("name", { length: 60 }).unique().notNull(),
+    name: varchar("name", { length: 60 }).unique().notNull(),
 
-  description: varchar("description", { length: 200 }),
+    description: varchar("description", { length: 200 }),
 
-  icon: badgeIconEnum("icon").notNull(),
+    icon: badgeIconEnum("icon").notNull(),
 
-  createdAt: timestamp("created_at").defaultNow().notNull(),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
 
-  updatedAt: timestamp("updated_at")
-    .$onUpdateFn(() => new Date())
-    .notNull(),
-}, (t) => [
-  index("badges_updated_at_idx").on(t.updatedAt),
-]);
+    updatedAt: timestamp("updated_at")
+      .$onUpdateFn(() => new Date())
+      .notNull(),
+  },
+  (t) => [index("badges_updated_at_idx").on(t.updatedAt)],
+);
 
 export const badgeSchema = createSelectSchema(badge);
 export const updateBadgeSchema = createUpdateSchema(badge);

@@ -19,14 +19,19 @@ export class UserBadgeService {
       .then((res) => res[0]);
   }
 
-  public async createMany(insertUserBadges: InsertUserBadge[]): Promise<UserBadge[]> {
+  public async createMany(
+    insertUserBadges: InsertUserBadge[],
+  ): Promise<UserBadge[]> {
     return await this.database
       .insert(this.table)
       .values(insertUserBadges)
       .returning();
   }
 
-  public async getUpdatedSince(userId: string, lastSyncedAt?: Date): Promise<UserBadge[]> {
+  public async getUpdatedSince(
+    userId: string,
+    lastSyncedAt?: Date,
+  ): Promise<UserBadge[]> {
     if (!lastSyncedAt) {
       return await this.database
         .select()
@@ -37,13 +42,20 @@ export class UserBadgeService {
     return await this.database
       .select()
       .from(this.table)
-      .where(and(eq(this.table.userId, userId), gt(this.table.earnedAt, lastSyncedAt)));
+      .where(
+        and(
+          eq(this.table.userId, userId),
+          gt(this.table.earnedAt, lastSyncedAt),
+        ),
+      );
   }
 
   public async delete(userId: string, badgeId: string) {
     return await this.database
       .delete(this.table)
-      .where(and(eq(this.table.userId, userId), eq(this.table.badgeId, badgeId)));
+      .where(
+        and(eq(this.table.userId, userId), eq(this.table.badgeId, badgeId)),
+      );
   }
 }
 

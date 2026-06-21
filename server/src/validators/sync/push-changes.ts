@@ -1,6 +1,12 @@
 import { z } from "zod";
-import { insertUserMissionSchema, updateUserMissionSchema } from "@/db/schemas/user-mission.schema";
-import { insertUserBadgeSchema, updateUserBadgeSchema } from "@/db/schemas/user-badge.schema";
+import {
+  insertUserMissionSchema,
+  updateUserMissionSchema,
+} from "@/db/schemas/user-mission.schema";
+import {
+  insertUserBadgeSchema,
+  updateUserBadgeSchema,
+} from "@/db/schemas/user-badge.schema";
 
 export const tableChangesSchema = <
   TInsert extends z.ZodTypeAny,
@@ -17,13 +23,28 @@ export const tableChangesSchema = <
     deleted: z.array(idSchema),
   });
 
-const pushInsertUserMissionSchema = insertUserMissionSchema.extend({
-  missionId: z.base64(),
-});
+const pushInsertUserMissionSchema = insertUserMissionSchema
+  .omit({ userId: true, missionId: true })
+  .extend({
+    id: z.string(),
+  });
 
-const pushUpdateUserMissionSchema = updateUserMissionSchema.extend({
-  missionId: z.base64().optional(),
-});
+const pushUpdateUserMissionSchema = updateUserMissionSchema
+  .omit({ userId: true, missionId: true })
+  .extend({
+    id: z.string().optional(),
+  });
+
+const pushInsertUserBadgeSchema = insertUserBadgeSchema
+  .omit({ userId: true, badgeId: true })
+  .extend({
+    id: z.string(),
+  });
+const pushUpdateUserBadgeSchema = updateUserBadgeSchema
+  .omit({ userId: true, badgeId: true })
+  .extend({
+    id: z.string().optional(),
+  });
 
 export const pushChangesSchema = z.object({
   userMissions: tableChangesSchema(
@@ -31,7 +52,11 @@ export const pushChangesSchema = z.object({
     pushUpdateUserMissionSchema,
     z.string().base64(),
   ).optional(),
-  userBadges: tableChangesSchema(insertUserBadgeSchema, updateUserBadgeSchema, z.string()).optional(),
+  userBadges: tableChangesSchema(
+    pushInsertUserBadgeSchema,
+    pushUpdateUserBadgeSchema,
+    z.string(),
+  ).optional(),
 });
 
 export type PushChanges = z.infer<typeof pushChangesSchema>;

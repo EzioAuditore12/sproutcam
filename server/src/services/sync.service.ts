@@ -29,7 +29,10 @@ export class SyncService {
   /**
    * Returns all changes since the client's last successful sync.
    */
-  async pullChanges(userId: string, lastSyncedAt?: Date): Promise<PullChangesResponse> {
+  async pullChanges(
+    userId: string,
+    lastSyncedAt?: Date,
+  ): Promise<PullChangesResponse> {
     const [missions, badges, userMissions, userBadges] = await Promise.all([
       this.getMissionChanges(lastSyncedAt),
       this.getBadgeChanges(lastSyncedAt),
@@ -50,17 +53,26 @@ export class SyncService {
 
   // ---------- Private ----------
 
-  private async applyUserMissionChanges(userId: string, changes: NonNullable<PushChanges["userMissions"]>) {
+  private async applyUserMissionChanges(
+    userId: string,
+    changes: NonNullable<PushChanges["userMissions"]>,
+  ) {
     if (changes.created.length > 0) {
-      // Ensure userId matches the authenticated user and convert missionId to BigInt
-      const created = changes.created.map((c) => ({ ...c, userId, missionId: decodeId(c.missionId) }));
+      const created = changes.created.map((c) => {
+        const { id, ...rest } = c;
+        return { ...rest, userId, missionId: decodeId(id) };
+      });
       await this.userMissionService.createMany(created);
     }
     if (changes.updated.length > 0) {
       for (const update of changes.updated) {
-        if (update.missionId) {
-          const missionId = decodeId(update.missionId);
-          await this.userMissionService.update(userId, missionId, { ...update, missionId });
+        const { id, ...rest } = update;
+        if (id) {
+          const missionId = decodeId(id);
+          await this.userMissionService.update(userId, missionId, {
+            ...rest,
+            missionId,
+          });
         }
       }
     }
@@ -71,9 +83,15 @@ export class SyncService {
     }
   }
 
-  private async applyUserBadgeChanges(userId: string, changes: NonNullable<PushChanges["userBadges"]>) {
+  private async applyUserBadgeChanges(
+    userId: string,
+    changes: NonNullable<PushChanges["userBadges"]>,
+  ) {
     if (changes.created.length > 0) {
-      const created = changes.created.map((c) => ({ ...c, userId }));
+      const created = changes.created.map((c) => {
+        const { id, ...rest } = c;
+        return { ...rest, userId, badgeId: id };
+      });
       await this.userBadgeService.createMany(created);
     }
     if (changes.updated.length > 0) {
@@ -111,21 +129,29 @@ export class SyncService {
   }
 
   private async getUserMissionChanges(userId: string, lastSyncedAt?: Date) {
-    const updated = await this.userMissionService.getUpdatedSince(userId, lastSyncedAt);
+    const updated = await this.userMissionService.getUpdatedSince(
+      userId,
+      lastSyncedAt,
+    );
+    const mapped = updated.map((u) => ({ ...u, id: String(u.missionId) }));
 
     return {
-      created: !lastSyncedAt ? updated : [],
-      updated: lastSyncedAt ? updated : [],
+      created: !lastSyncedAt ? mapped : [],
+      updated: lastSyncedAt ? mapped : [],
       deleted: [], // Handle tombstone tracking if needed
     };
   }
 
   private async getUserBadgeChanges(userId: string, lastSyncedAt?: Date) {
-    const updated = await this.userBadgeService.getUpdatedSince(userId, lastSyncedAt);
+    const updated = await this.userBadgeService.getUpdatedSince(
+      userId,
+      lastSyncedAt,
+    );
+    const mapped = updated.map((u) => ({ ...u, id: String(u.badgeId) }));
 
     return {
-      created: !lastSyncedAt ? updated : [],
-      updated: lastSyncedAt ? updated : [],
+      created: !lastSyncedAt ? mapped : [],
+      updated: lastSyncedAt ? mapped : [],
       deleted: [], // Handle tombstone tracking if needed
     };
   }

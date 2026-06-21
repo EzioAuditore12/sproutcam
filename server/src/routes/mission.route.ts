@@ -21,11 +21,16 @@ missionRegistry.registerPath({
   method: "post",
   path: `${missionPrefix}/{id}/subscribe`,
   summary: "Subscribe to a mission",
-  description: "Registers the current user to participate in a specific mission by its ID.",
+  description:
+    "Registers the current user to participate in a specific mission by its ID.",
   request: {
     params: subscribeMissionSchema,
   },
-  responses: createApiResponse(subscribeMissionResponseSchema, "Created", StatusCodes.CREATED),
+  responses: createApiResponse(
+    subscribeMissionResponseSchema,
+    "Created",
+    StatusCodes.CREATED,
+  ),
 });
 
 missionRouter.post(

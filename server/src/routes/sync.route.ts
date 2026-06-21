@@ -5,7 +5,10 @@ import { createApiResponse } from "@/lib/open-api/open-api-response-builder";
 import validate from "express-zod-safe";
 import { authMiddleware } from "@/middlewares/auth.middleware";
 import { syncController } from "@/controller/sync.controller";
-import { pullChangesQuerySchema, pullChangesResponseSchema } from "@/validators/sync/pull-changes";
+import {
+  pullChangesQuerySchema,
+  pullChangesResponseSchema,
+} from "@/validators/sync/pull-changes";
 import { pushChangesSchema } from "@/validators/sync/push-changes";
 import { z } from "zod";
 import { StatusCodes } from "http-status-codes";
@@ -22,7 +25,8 @@ syncRegistry.registerPath({
   method: "get",
   path: `${syncPrefix}/pull`,
   summary: "Pull synchronization changes",
-  description: "Returns all changes (created, updated, deleted) that occurred since the provided `lastSyncedAt` timestamp.",
+  description:
+    "Returns all changes (created, updated, deleted) that occurred since the provided `lastSyncedAt` timestamp.",
   request: {
     query: pullChangesQuerySchema,
   },
@@ -34,7 +38,8 @@ syncRegistry.registerPath({
   method: "post",
   path: `${syncPrefix}/push`,
   summary: "Push synchronization changes",
-  description: "Applies a batch of local client changes (creates, updates, deletes) to the server database.",
+  description:
+    "Applies a batch of local client changes (creates, updates, deletes) to the server database.",
   request: {
     body: {
       content: {

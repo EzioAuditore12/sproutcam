@@ -15,16 +15,24 @@ const pullMissionSchema = missionSchema.extend({
   id: z.coerce.bigint(),
 });
 
-const pullUserMissionSchema = userMissionSchema.extend({
-  missionId: z.coerce.bigint(),
-});
+const pullUserMissionSchema = userMissionSchema
+  .omit({ userId: true, missionId: true })
+  .extend({
+    id: z.string(),
+  });
+
+const pullUserBadgeSchema = userBadgeSchema
+  .omit({ userId: true, badgeId: true })
+  .extend({
+    id: z.string(),
+  });
 
 export const pullChangesResponseSchema = z.object({
   changes: z.object({
     missions: tableChangesSchema(pullMissionSchema).optional(),
     badges: tableChangesSchema(badgeSchema).optional(),
     userMissions: tableChangesSchema(pullUserMissionSchema).optional(),
-    userBadges: tableChangesSchema(userBadgeSchema).optional(),
+    userBadges: tableChangesSchema(pullUserBadgeSchema).optional(),
   }),
   timestamp: z.date(),
 });
