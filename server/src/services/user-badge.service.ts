@@ -1,11 +1,12 @@
-import { db } from "@/db";
-import { and, eq, gt } from "drizzle-orm";
+import { and, eq, gt } from 'drizzle-orm';
+
+import { db } from '@/db';
 import {
+  userBadge,
   type InsertUserBadge,
   type UpdateUserBadge,
   type UserBadge,
-  userBadge,
-} from "@/db/schemas/user-badge.schema";
+} from '@/db/schemas/user-badge.schema';
 
 export class UserBadgeService {
   private readonly database = db;

@@ -1,13 +1,13 @@
+import { Canvas, Group, LinearGradient, Path, Shadow, vec } from "@shopify/react-native-skia";
 import { useEffect } from "react";
-import { Canvas, Path, vec, Group, Shadow, LinearGradient } from "@shopify/react-native-skia";
+import { View } from "react-native";
 import {
+  Easing,
+  useDerivedValue,
   useSharedValue,
   withRepeat,
   withTiming,
-  Easing,
-  useDerivedValue,
 } from "react-native-reanimated";
-import { View } from "react-native";
 
 export function StarAnimation() {
   const rotation = useSharedValue(0);

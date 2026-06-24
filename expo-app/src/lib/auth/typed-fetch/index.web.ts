@@ -1,9 +1,9 @@
 import * as s from "standard-parse";
-import { env } from "@/env";
-import type { BaseAuthenticatedFetchProps, TypedAuthenticatedFetchProps } from "./type";
 
-import { buildQueryParams } from "../../fetch/utils";
+import { env } from "@/env";
 import { fetch } from "../../fetch";
+import { buildQueryParams } from "../../fetch/utils";
+import type { BaseAuthenticatedFetchProps, TypedAuthenticatedFetchProps } from "./type";
 
 export const executeAuthenticatedRequest = async ({
   baseUrl = env.SERVER_URL,

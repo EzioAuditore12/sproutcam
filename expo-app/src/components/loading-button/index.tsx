@@ -1,7 +1,5 @@
+import { useCallback, useEffect, useRef, useState } from "react";
 import { StyleSheet, View } from "react-native";
-
-import { useRef, useState, useCallback, useEffect } from "react";
-
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { ActualButton } from "./actual-button";

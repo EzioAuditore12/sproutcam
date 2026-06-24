@@ -1,6 +1,6 @@
-import { QueryClient, QueryClientProvider, focusManager } from "@tanstack/react-query";
+import { focusManager, QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import type { PropsWithChildren } from "react";
-import { type AppStateStatus, Platform } from "react-native";
+import { Platform, type AppStateStatus } from "react-native";
 
 import { useAppState } from "@/hooks/use-app-state";
 import { useOnlineManager } from "@/hooks/use-online-manager";

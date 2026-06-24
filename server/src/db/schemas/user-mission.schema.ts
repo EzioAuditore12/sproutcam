@@ -1,51 +1,51 @@
 import {
+  bigint,
   index,
   integer,
   pgTable,
   primaryKey,
   text,
   timestamp,
-  bigint,
-} from "drizzle-orm/pg-core";
+} from 'drizzle-orm/pg-core';
 import {
   createInsertSchema,
   createSelectSchema,
   createUpdateSchema,
-} from "drizzle-zod";
-import { z } from "zod";
+} from 'drizzle-zod';
+import { z } from 'zod';
 
-import { mission } from "./mission.schema";
-import { user } from "./auth.schema";
+import { user } from './auth.schema';
+import { mission } from './mission.schema';
 
-export const USER_MISSIONS_TABLE_NAME = "user_missions";
+export const USER_MISSIONS_TABLE_NAME = 'user_missions';
 
 export const userMission = pgTable(
   USER_MISSIONS_TABLE_NAME,
   {
-    userId: text("user_id")
-      .references(() => user.id, { onDelete: "cascade" })
+    userId: text('user_id')
+      .references(() => user.id, { onDelete: 'cascade' })
       .notNull(),
 
-    missionId: bigint("mission_id", { mode: "bigint" })
-      .references(() => mission.id, { onDelete: "cascade" })
+    missionId: bigint('mission_id', { mode: 'bigint' })
+      .references(() => mission.id, { onDelete: 'cascade' })
       .notNull(),
 
-    progress: integer("progress").notNull().default(0),
+    progress: integer('progress').notNull().default(0),
 
-    claimedAt: timestamp("claimed_at"),
+    claimedAt: timestamp('claimed_at'),
 
-    completedAt: timestamp("completed_at"),
+    completedAt: timestamp('completed_at'),
 
-    createdAt: timestamp("created_at").defaultNow().notNull(),
+    createdAt: timestamp('created_at').defaultNow().notNull(),
 
-    updatedAt: timestamp("updated_at").$onUpdateFn(() => new Date()),
+    updatedAt: timestamp('updated_at').$onUpdateFn(() => new Date()),
   },
   (t) => [
     primaryKey({
       columns: [t.userId, t.missionId],
     }),
-    index("user_missions_mission_id_idx").on(t.missionId),
-    index("user_missions_user_updated_at_idx").on(t.userId, t.updatedAt),
+    index('user_missions_mission_id_idx').on(t.missionId),
+    index('user_missions_user_updated_at_idx').on(t.userId, t.updatedAt),
   ],
 );
 

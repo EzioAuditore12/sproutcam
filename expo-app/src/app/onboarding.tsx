@@ -1,12 +1,11 @@
+import { Redirect, router } from "expo-router";
 import { useState } from "react";
 import Onboarding from "react-native-onboarding-swiper";
-import { Redirect, router } from "expo-router";
 
-import { OnboardingBanner } from "@/features/onboarding/components/banner";
-
+import FiveStars from "@/features/onboarding/assets/five-stars.json";
 import PlantSprout from "@/features/onboarding/assets/plant-sprout.json";
 import ShootingPhotoAnimation from "@/features/onboarding/assets/shooting-photo-animation.json";
-import FiveStars from "@/features/onboarding/assets/five-stars.json";
+import { OnboardingBanner } from "@/features/onboarding/components/banner";
 import { useSettingStore } from "@/store/settings";
 
 export default function OnboardingScreen() {

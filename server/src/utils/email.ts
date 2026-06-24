@@ -1,7 +1,7 @@
-import FormData from "form-data";
-import Mailgun from "mailgun.js";
+import FormData from 'form-data';
+import Mailgun from 'mailgun.js';
 
-import { env } from "@/env";
+import { env } from '@/env';
 
 interface SendEmailOptions {
   to: string;
@@ -12,7 +12,7 @@ interface SendEmailOptions {
 export async function sendEmail({ to, subject, text }: SendEmailOptions) {
   const mailgun = new Mailgun(FormData);
   const mg = mailgun.client({
-    username: "api",
+    username: 'api',
     key: env.MAILGUN_API_KEY,
   });
   try {

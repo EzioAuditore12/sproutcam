@@ -1,12 +1,10 @@
+import { memo, type FC } from "react";
 import { StyleSheet } from "react-native";
-
-import { type FC, memo } from "react";
-
 import Animated, {
-  type SharedValue,
   useAnimatedProps,
   useAnimatedStyle,
   withTiming,
+  type SharedValue,
 } from "react-native-reanimated";
 
 type AnimatedBackdropProps = {

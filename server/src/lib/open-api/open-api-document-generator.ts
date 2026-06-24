@@ -1,15 +1,15 @@
 import {
-  OpenAPIRegistry,
   OpenApiGeneratorV3,
-} from "@asteasolutions/zod-to-openapi";
+  OpenAPIRegistry,
+} from '@asteasolutions/zod-to-openapi';
 
-import { healthCheckRegistry } from "@/routes/health-check.route";
-import { missionRegistry } from "@/routes/mission.route";
-import { syncRegistry } from "@/routes/sync.route";
-import { userRegistry } from "@/routes/user.route";
+import { healthCheckRegistry } from '@/routes/health-check.route';
+import { missionRegistry } from '@/routes/mission.route';
+import { syncRegistry } from '@/routes/sync.route';
+import { userRegistry } from '@/routes/user.route';
 
 export type OpenAPIDocument = ReturnType<
-  OpenApiGeneratorV3["generateDocument"]
+  OpenApiGeneratorV3['generateDocument']
 >;
 
 export function generateOpenAPIDocument(): OpenAPIDocument {
@@ -23,10 +23,10 @@ export function generateOpenAPIDocument(): OpenAPIDocument {
   const generator = new OpenApiGeneratorV3(registry.definitions);
 
   return generator.generateDocument({
-    openapi: "3.0.0",
+    openapi: '3.0.0',
     info: {
-      version: "1.0.0",
-      title: "Scalar API",
+      version: '1.0.0',
+      title: 'Scalar API',
     },
   });
 }

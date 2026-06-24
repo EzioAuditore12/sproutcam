@@ -1,9 +1,9 @@
 import { type } from "arktype";
-import { missionSchema } from "@/db/tables/mission.table";
-import { badgeSchema } from "@/db/tables/badge.table";
-import { userMissionSchema } from "@/db/tables/user-mission.table";
-import { userBadgeSchema } from "@/db/tables/user-badge.table";
 
+import { badgeSchema } from "@/db/tables/badge.table";
+import { missionSchema } from "@/db/tables/mission.table";
+import { userBadgeSchema } from "@/db/tables/user-badge.table";
+import { userMissionSchema } from "@/db/tables/user-mission.table";
 import { tableChangesSchema } from "../table-change.schema";
 
 const dateTransformer = type("string.date.iso").pipe((val) => new Date(val));

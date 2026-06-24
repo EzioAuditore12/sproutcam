@@ -1,21 +1,18 @@
-import { StyleSheet, Text, View, type FlatList, type LayoutRectangle } from "react-native";
-
 import { useCallback, useRef } from "react";
-
+import { StyleSheet, Text, View, type FlatList, type LayoutRectangle } from "react-native";
 import Animated, {
-  type SharedValue,
   useAnimatedScrollHandler,
   useSharedValue,
+  type SharedValue,
 } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { MeasureableAnimatedView } from "./measurable-animated-view";
-import { SectionListItem } from "./section-list-item";
 import { data, isHeader } from "./constants";
+import type { HeaderListItem, ListItem } from "./constants";
 import { useHeaderLayout } from "./hooks/use-header-layout";
 import { useHeaderStyle } from "./hooks/use-header-style";
-
-import type { HeaderListItem, ListItem } from "./constants";
+import { MeasureableAnimatedView } from "./measurable-animated-view";
+import { SectionListItem } from "./section-list-item";
 
 const HeaderHeight = 65;
 const ItemHeight = 50;

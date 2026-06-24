@@ -1,8 +1,8 @@
 import { Redirect, Stack } from "expo-router";
-import { LoadingScreen } from "@/components/loading-screen";
 
-import { useSession } from "../../lib/auth";
+import { LoadingScreen } from "@/components/loading-screen";
 import { useSyncEngine } from "../../db/sync/hook";
+import { useSession } from "../../lib/auth";
 
 export default function MainLayout() {
   const { data, isPending } = useSession();

@@ -1,6 +1,5 @@
-import { Extrapolation, interpolate, SharedValue, useAnimatedStyle } from "react-native-reanimated";
-
 import type { LayoutRectangle } from "react-native";
+import { Extrapolation, interpolate, SharedValue, useAnimatedStyle } from "react-native-reanimated";
 
 type UseHeaderStyleParams = {
   contentOffsetY: SharedValue<number>;

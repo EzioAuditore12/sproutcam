@@ -1,5 +1,5 @@
-import { index, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 import { createInsertSchema, createSelectSchema, createUpdateSchema } from "drizzle-arktype";
+import { index, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
 import { missionsTable } from "./mission.table";
 

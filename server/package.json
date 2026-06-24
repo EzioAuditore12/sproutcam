@@ -25,7 +25,7 @@
     "@asteasolutions/zod-to-openapi": "^8.5.0",
     "@better-auth/expo": "^1.6.20",
     "@sapphire/snowflake": "^3.5.5",
-    "@scalar/express-api-reference": "^0.10.4",
+    "@scalar/express-api-reference": "^0.10.5",
     "better-auth": "^1.6.20",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
@@ -46,7 +46,8 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^9.0.0",
+    "@antfu/eslint-config": "^9.1.0",
+    "@ianvs/prettier-plugin-sort-imports": "^4.7.1",
     "@types/cookie-parser": "^1.4.10",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",

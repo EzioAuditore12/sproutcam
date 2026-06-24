@@ -1,14 +1,12 @@
+import { memo, type FC } from "react";
 import { StyleSheet, View } from "react-native";
-
-import { type FC, memo } from "react";
-
 import Animated, {
   Extrapolation,
   interpolate,
-  type SharedValue,
   useAnimatedStyle,
   useDerivedValue,
   withTiming,
+  type SharedValue,
 } from "react-native-reanimated";
 import { ReText } from "react-native-redash";
 

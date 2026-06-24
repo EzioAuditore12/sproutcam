@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-import { StyleSheet, View } from "react-native";
 import {
   Canvas,
   Group,
@@ -8,6 +6,8 @@ import {
   useClock,
   type CanvasProps,
 } from "@shopify/react-native-skia";
+import { useEffect } from "react";
+import { StyleSheet, View } from "react-native";
 import { useDerivedValue, useSharedValue } from "react-native-reanimated";
 
 export function OnboardingBanner({

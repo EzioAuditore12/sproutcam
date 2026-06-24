@@ -1,7 +1,6 @@
-import { Text, View, StyleSheet } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 import { isHeader } from "./constants";
-
 import type { HeaderListItem, ListItem } from "./constants";
 
 type SectionListItemProps = {

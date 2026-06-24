@@ -1,11 +1,10 @@
-import { badgeService } from "./badge.service";
-import { missionService } from "./mission.service";
-import { userBadgeService } from "./user-badge.service";
-import { userMissionService } from "./user-mission.service";
-
-import type { PushChanges } from "@/validators/sync/push-changes";
-import type { PullChangesResponse } from "@/validators/sync/pull-changes";
-import { decodeId } from "@/utils/decode-id.util";
+import { decodeId } from '@/utils/decode-id.util';
+import type { PullChangesResponse } from '@/validators/sync/pull-changes';
+import type { PushChanges } from '@/validators/sync/push-changes';
+import { badgeService } from './badge.service';
+import { missionService } from './mission.service';
+import { userBadgeService } from './user-badge.service';
+import { userMissionService } from './user-mission.service';
 
 export class SyncService {
   private readonly missionService = missionService;
@@ -55,7 +54,7 @@ export class SyncService {
 
   private async applyUserMissionChanges(
     userId: string,
-    changes: NonNullable<PushChanges["userMissions"]>,
+    changes: NonNullable<PushChanges['userMissions']>,
   ) {
     if (changes.created.length > 0) {
       const created = changes.created.map((c) => {
@@ -85,7 +84,7 @@ export class SyncService {
 
   private async applyUserBadgeChanges(
     userId: string,
-    changes: NonNullable<PushChanges["userBadges"]>,
+    changes: NonNullable<PushChanges['userBadges']>,
   ) {
     if (changes.created.length > 0) {
       const created = changes.created.map((c) => {

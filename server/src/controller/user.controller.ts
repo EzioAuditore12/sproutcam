@@ -1,8 +1,8 @@
-import type { Request, Response } from "express";
-import { NotFoundError } from "express-error-toolkit";
+import type { Request, Response } from 'express';
+import { NotFoundError } from 'express-error-toolkit';
+import { StatusCodes } from 'http-status-codes';
 
-import { userService } from "@/services/user.service";
-import { StatusCodes } from "http-status-codes";
+import { userService } from '@/services/user.service';
 
 export class UserController {
   private readonly userService = userService;

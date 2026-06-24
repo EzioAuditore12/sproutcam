@@ -1,8 +1,8 @@
-import { Typography } from "heroui-native/text";
 import { Card } from "heroui-native/card";
-import { ZoomIn, FadeInUp } from "react-native-reanimated";
-import { MotionView, type MotionViewProps } from "@/components/motion-view";
+import { Typography } from "heroui-native/text";
+import { FadeInUp, ZoomIn } from "react-native-reanimated";
 
+import { MotionView, type MotionViewProps } from "@/components/motion-view";
 import { StarAnimation } from "./star-animation";
 
 export interface StarsCardProps extends Partial<MotionViewProps> {

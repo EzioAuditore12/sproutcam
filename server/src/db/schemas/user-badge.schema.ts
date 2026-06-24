@@ -1,39 +1,39 @@
 import {
+  index,
   pgTable,
   text,
   timestamp,
-  uuid,
   uniqueIndex,
-  index,
-} from "drizzle-orm/pg-core";
+  uuid,
+} from 'drizzle-orm/pg-core';
 import {
   createInsertSchema,
   createSelectSchema,
   createUpdateSchema,
-} from "drizzle-zod";
-import { z } from "zod";
+} from 'drizzle-zod';
+import { z } from 'zod';
 
-import { user } from "./auth.schema";
-import { badge } from "./badge.schema";
+import { user } from './auth.schema';
+import { badge } from './badge.schema';
 
-export const USER_BADGES_TABLE_NAME = "user_badges";
+export const USER_BADGES_TABLE_NAME = 'user_badges';
 
 export const userBadge = pgTable(
   USER_BADGES_TABLE_NAME,
   {
-    userId: text("user_id")
-      .references(() => user.id, { onDelete: "cascade" })
+    userId: text('user_id')
+      .references(() => user.id, { onDelete: 'cascade' })
       .notNull(),
 
-    badgeId: uuid("badge_id")
-      .references(() => badge.id, { onDelete: "cascade" })
+    badgeId: uuid('badge_id')
+      .references(() => badge.id, { onDelete: 'cascade' })
       .notNull(),
 
-    earnedAt: timestamp("earned_at").defaultNow().notNull(),
+    earnedAt: timestamp('earned_at').defaultNow().notNull(),
   },
   (t) => [
-    uniqueIndex("user_badges_user_badge_unique").on(t.userId, t.badgeId),
-    index("user_badges_user_earned_at_idx").on(t.userId, t.earnedAt),
+    uniqueIndex('user_badges_user_badge_unique').on(t.userId, t.badgeId),
+    index('user_badges_user_earned_at_idx').on(t.userId, t.earnedAt),
   ],
 );
 

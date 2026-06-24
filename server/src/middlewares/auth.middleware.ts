@@ -1,8 +1,8 @@
-import type { NextFunction, Request, Response } from "express";
-import { fromNodeHeaders } from "better-auth/node";
-import { UnauthenticatedError } from "express-error-toolkit";
+import { fromNodeHeaders } from 'better-auth/node';
+import type { NextFunction, Request, Response } from 'express';
+import { UnauthenticatedError } from 'express-error-toolkit';
 
-import { auth } from "@/lib/auth";
+import { auth } from '@/lib/auth';
 
 export async function authMiddleware(
   req: Request,
@@ -13,7 +13,7 @@ export async function authMiddleware(
     headers: fromNodeHeaders(req.headers),
   });
 
-  if (!session) throw new UnauthenticatedError("Unauthorized to access");
+  if (!session) throw new UnauthenticatedError('Unauthorized to access');
 
   req.session = session.session;
   req.user = session.user;

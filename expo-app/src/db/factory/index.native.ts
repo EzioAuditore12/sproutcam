@@ -1,7 +1,6 @@
+import { DrizzleAppSchema } from "@powersync/drizzle-driver";
 import { OPSqliteOpenFactory } from "@powersync/op-sqlite";
 import { PowerSyncDatabase } from "@powersync/react-native";
-
-import { DrizzleAppSchema } from "@powersync/drizzle-driver";
 
 export const createPowerSyncDatabase = (dbName: string, schema: DrizzleAppSchema<any>) => {
   const factory = new OPSqliteOpenFactory({

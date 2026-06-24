@@ -1,8 +1,8 @@
 import * as BackgroundTask from "expo-background-task";
 import * as TaskManager from "expo-task-manager";
-
 import { useEffect, useRef } from "react";
 import { AppStateStatus } from "react-native";
+
 import { syncDatabase } from "@/db/sync";
 import { useAppState } from "@/hooks/use-app-state";
 

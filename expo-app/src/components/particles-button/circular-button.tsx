@@ -16,20 +16,18 @@
  * ```
  */
 
-import { StyleSheet, View } from "react-native";
-
-import { useCallback, useMemo, useRef } from "react";
-
 import { AntDesign } from "@react-native-vector-icons/ant-design";
 import { FontAwesome6 } from "@react-native-vector-icons/fontawesome6";
 import { PressableScale } from "pressto";
+import { useCallback, useMemo, useRef } from "react";
+import { StyleSheet, View } from "react-native";
 import Animated, {
+  cancelAnimation,
   Extrapolation,
   interpolate,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
-  cancelAnimation,
 } from "react-native-reanimated";
 
 import { BlastCircleEffect, type BlastEffectRefType } from "./blast-effect";

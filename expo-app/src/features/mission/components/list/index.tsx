@@ -1,6 +1,6 @@
-import { View } from "react-native";
-import { Typography } from "heroui-native/text";
 import { FlashList } from "@shopify/flash-list";
+import { Typography } from "heroui-native/text";
+import { View } from "react-native";
 
 import type { Mission } from "@/db/tables/mission.table";
 import { MissionListItem } from "./card";

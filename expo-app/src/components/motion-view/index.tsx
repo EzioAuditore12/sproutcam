@@ -1,5 +1,5 @@
 import React from "react";
-import { ViewProps, StyleProp, ViewStyle } from "react-native";
+import { StyleProp, ViewProps, ViewStyle } from "react-native";
 import Animated, { FadeInDown } from "react-native-reanimated";
 
 export interface MotionViewProps extends ViewProps {

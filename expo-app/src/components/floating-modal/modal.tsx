@@ -1,18 +1,15 @@
-import { StyleSheet, Text, View } from "react-native";
-
-import { type FC, memo, type ReactNode } from "react";
-
 import { PressableScale } from "pressto";
+import { memo, type FC, type ReactNode } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import type { StyleProp, ViewStyle } from "react-native";
 import Animated, {
-  type SharedValue,
   useAnimatedProps,
   useAnimatedStyle,
   withTiming,
+  type SharedValue,
 } from "react-native-reanimated";
 
 import { FLOATING_BUTTON_SIZE } from "./constants";
-
-import type { StyleProp, ViewStyle } from "react-native";
 
 type ModalProps = {
   children?: ReactNode;

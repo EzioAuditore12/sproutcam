@@ -1,4 +1,5 @@
-import { eq, desc } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
+
 import { db } from "@/db";
 import { useLiveQuery } from "@/db/hooks/use-live-query";
 import { badgesTable } from "@/db/tables/badge.table";

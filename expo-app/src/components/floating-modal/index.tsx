@@ -1,7 +1,5 @@
+import { memo, type FC } from "react";
 import { StyleSheet, useWindowDimensions } from "react-native";
-
-import { type FC, memo } from "react";
-
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
   Extrapolation,

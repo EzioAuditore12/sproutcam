@@ -1,13 +1,13 @@
+import { Canvas, LinearGradient, Path, vec } from "@shopify/react-native-skia";
 import { useEffect } from "react";
-import { Canvas, Path, LinearGradient, vec } from "@shopify/react-native-skia";
+import { View } from "react-native";
 import {
+  Easing,
+  useDerivedValue,
   useSharedValue,
   withRepeat,
   withTiming,
-  Easing,
-  useDerivedValue,
 } from "react-native-reanimated";
-import { View } from "react-native";
 
 export function HeaderWaveAnimation() {
   const phase = useSharedValue(0);

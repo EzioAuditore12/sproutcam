@@ -1,8 +1,7 @@
-import { StyleSheet, View } from "react-native";
-
-import { type FC, type ReactNode, memo, useCallback, useMemo, useRef } from "react";
-
 import { LinearGradient } from "expo-linear-gradient";
+import { memo, useCallback, useMemo, useRef, type FC, type ReactNode } from "react";
+import { StyleSheet, View } from "react-native";
+import type { LayoutChangeEvent, ScrollViewProps, StyleProp, ViewStyle } from "react-native";
 import Animated, {
   useAnimatedReaction,
   useAnimatedScrollHandler,
@@ -13,8 +12,6 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { BottomProgress } from "./bottom-progress";
 import { clamp, getReadingTime } from "./utils";
-
-import type { LayoutChangeEvent, ScrollViewProps, StyleProp, ViewStyle } from "react-native";
 
 type Section = {
   title: string;

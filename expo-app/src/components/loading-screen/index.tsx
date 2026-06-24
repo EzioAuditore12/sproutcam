@@ -1,5 +1,5 @@
-import { View } from "react-native";
 import { Spinner } from "heroui-native/spinner";
+import { View } from "react-native";
 
 export function LoadingScreen() {
   return (

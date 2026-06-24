@@ -1,12 +1,12 @@
+import { wrapPowerSyncWithDrizzle } from "@powersync/drizzle-driver";
 import { PowerSyncContext, usePowerSync } from "@powersync/react";
 import type { PowerSyncDatabase } from "@powersync/react-native";
 import type { PowerSyncDatabase as PowerSyncDatabaseWeb } from "@powersync/web";
-import { wrapPowerSyncWithDrizzle } from "@powersync/drizzle-driver";
 import type { PropsWithChildren } from "react";
 
+import { createPowerSyncDatabase } from "./factory";
 import { AppSchema, drizzleSchema } from "./schema";
 
-import { createPowerSyncDatabase } from "./factory";
 const dbName = "sproutcam.db";
 
 // Dummy function to extract exact ReturnType for typescript without instantiating early

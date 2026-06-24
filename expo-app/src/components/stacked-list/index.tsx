@@ -1,5 +1,4 @@
 import { Dimensions, StyleSheet, View } from "react-native";
-
 import Animated, {
   Extrapolation,
   interpolate,
@@ -8,7 +7,6 @@ import Animated, {
   useDerivedValue,
   useSharedValue,
 } from "react-native-reanimated";
-
 import type { SharedValue } from "react-native-reanimated";
 
 // Constants for list item height, margin, and additional measurements

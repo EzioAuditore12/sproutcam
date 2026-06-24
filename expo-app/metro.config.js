@@ -11,7 +11,10 @@ const nativeOnlyModules = new Set([
   "react-native-mmkv",
   "react-native-nitro-image",
   "react-native-vision-camera",
+  "react-native-vision-camera-resizer",
+  "react-native-vision-camera-worklets",
   "react-native-nitro-fetch",
+  "react-native-fast-tflite",
 ]);
 
 const webOnlyModules = new Set(["@powersync/web", "@react-native-async-storage/async-storage"]);
@@ -22,6 +25,7 @@ const webModuleMappings = {
 };
 
 config.resolver.sourceExts = [...(config.resolver.sourceExts || []), "mjs", "cjs"];
+config.resolver.assetExts.push("tflite");
 
 config.resolver.resolveRequest = (context, moduleName, platform) => {
   if (moduleName === "zustand" || moduleName.startsWith("zustand/")) {

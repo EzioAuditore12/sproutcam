@@ -1,10 +1,11 @@
-import { db } from "@/db";
+import { eq, gt } from 'drizzle-orm';
+
+import { db } from '@/db';
 import {
+  mission,
   type InsertMission,
   type Mission,
-  mission,
-} from "@/db/schemas/mission.schema";
-import { eq, gt } from "drizzle-orm";
+} from '@/db/schemas/mission.schema';
 
 export class MissionService {
   private readonly database = db;

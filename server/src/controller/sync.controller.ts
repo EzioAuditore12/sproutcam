@@ -1,9 +1,10 @@
-import { Response } from "express";
-import { StatusCodes } from "http-status-codes";
-import { syncService } from "@/services/sync.service";
-import type { ValidatedRequest } from "express-zod-safe";
-import { pullChangesQuerySchema } from "@/validators/sync/pull-changes";
-import { pushChangesSchema } from "@/validators/sync/push-changes";
+import { Response } from 'express';
+import type { ValidatedRequest } from 'express-zod-safe';
+import { StatusCodes } from 'http-status-codes';
+
+import { syncService } from '@/services/sync.service';
+import { pullChangesQuerySchema } from '@/validators/sync/pull-changes';
+import { pushChangesSchema } from '@/validators/sync/push-changes';
 
 export type PullChangesRequest = ValidatedRequest<{
   query: typeof pullChangesQuerySchema;

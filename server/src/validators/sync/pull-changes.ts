@@ -1,8 +1,9 @@
-import { z } from "zod";
-import { missionSchema } from "@/db/schemas/mission.schema";
-import { badgeSchema } from "@/db/schemas/badge.schema";
-import { userMissionSchema } from "@/db/schemas/user-mission.schema";
-import { userBadgeSchema } from "@/db/schemas/user-badge.schema";
+import { z } from 'zod';
+
+import { badgeSchema } from '@/db/schemas/badge.schema';
+import { missionSchema } from '@/db/schemas/mission.schema';
+import { userBadgeSchema } from '@/db/schemas/user-badge.schema';
+import { userMissionSchema } from '@/db/schemas/user-mission.schema';
 
 const tableChangesSchema = <T extends z.ZodTypeAny>(schema: T) =>
   z.object({

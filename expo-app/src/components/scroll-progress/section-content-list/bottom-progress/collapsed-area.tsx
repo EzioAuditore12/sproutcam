@@ -1,10 +1,8 @@
-import { StyleSheet, Text, View } from "react-native";
-
-import { type FC, memo, useCallback } from "react";
-
 import { AntDesign } from "@react-native-vector-icons/ant-design";
 import { PressableOpacity } from "pressto";
-import Animated, { type SharedValue, useAnimatedStyle, withTiming } from "react-native-reanimated";
+import { memo, useCallback, type FC } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import Animated, { useAnimatedStyle, withTiming, type SharedValue } from "react-native-reanimated";
 
 import { BottomProgressState } from "../typings";
 

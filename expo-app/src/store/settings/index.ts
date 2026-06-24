@@ -1,12 +1,11 @@
+import { router } from "expo-router";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import { router } from "expo-router";
 
-import type { SettingStore } from "./type";
-import { zustandStorage } from "../storage";
-
-import { authClient } from "../../lib/auth";
 import { powerSyncDb } from "@/db";
+import { authClient } from "../../lib/auth";
+import { zustandStorage } from "../storage";
+import type { SettingStore } from "./type";
 
 export const useSettingStore = create<SettingStore>()(
   persist(

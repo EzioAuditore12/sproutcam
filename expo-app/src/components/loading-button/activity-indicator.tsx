@@ -1,19 +1,18 @@
-import { useEffect, useMemo } from "react";
-
 import {
   Canvas,
   Circle,
+  fitbox,
   Group,
   ImageSVG,
   Path,
-  Skia,
-  fitbox,
   rect,
+  Skia,
   type SkSVG,
 } from "@shopify/react-native-skia";
+import { useEffect, useMemo } from "react";
 import Animated, {
-  Easing,
   cancelAnimation,
+  Easing,
   interpolate,
   useAnimatedStyle,
   useDerivedValue,

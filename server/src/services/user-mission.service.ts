@@ -1,12 +1,12 @@
-import { db } from "@/db";
-import { and, eq, gt } from "drizzle-orm";
+import { and, eq, gt } from 'drizzle-orm';
 
+import { db } from '@/db';
 import {
+  userMission,
   type InsertUserMission,
   type UpdateUserMission,
   type UserMission,
-  userMission,
-} from "@/db/schemas/user-mission.schema";
+} from '@/db/schemas/user-mission.schema';
 
 export class UserMissionService {
   private readonly database = db;

@@ -1,6 +1,7 @@
-import { Typography } from "heroui-native/text";
 import { Card } from "heroui-native/card";
+import { Typography } from "heroui-native/text";
 import { FadeInDown } from "react-native-reanimated";
+
 import { MotionView, MotionViewProps } from "@/components/motion-view";
 import { BadgeBloomAnimation } from "./badge-bloom-animation";
 

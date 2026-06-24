@@ -1,8 +1,9 @@
+import { eq } from "drizzle-orm";
+
 import { db } from "@/db";
 import { useLiveQuery } from "@/db/hooks/use-live-query";
 import { missionsTable } from "@/db/tables/mission.table";
 import { userMissionsTable } from "@/db/tables/user-mission.table";
-import { eq } from "drizzle-orm";
 
 export function useMissionById(id: string) {
   const { data, isLoading, error } = useLiveQuery(

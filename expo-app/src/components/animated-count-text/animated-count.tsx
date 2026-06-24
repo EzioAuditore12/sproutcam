@@ -1,5 +1,4 @@
-import { type FC, memo, useMemo } from "react";
-
+import { memo, useMemo, type FC } from "react";
 import Animated, { LinearTransition } from "react-native-reanimated";
 
 import { AnimatedDigit } from "./animated-digit";

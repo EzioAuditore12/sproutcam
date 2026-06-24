@@ -2,13 +2,12 @@ import { eq, inArray } from "drizzle-orm";
 import type { AnySQLiteColumn, SQLiteTable } from "drizzle-orm/sqlite-core";
 
 import { db } from "@/db";
+import { badgesTable } from "@/db/tables/badge.table";
+import { missionsTable } from "@/db/tables/mission.table";
+import { userBadgesTable } from "@/db/tables/user-badge.table";
+import { userMissionsTable } from "@/db/tables/user-mission.table";
 import { pullChangesApi } from "@/features/sync/api/pull-changes.api";
 import { useSettingStore } from "@/store/settings";
-
-import { missionsTable } from "@/db/tables/mission.table";
-import { badgesTable } from "@/db/tables/badge.table";
-import { userMissionsTable } from "@/db/tables/user-mission.table";
-import { userBadgesTable } from "@/db/tables/user-badge.table";
 
 type TransactionType = Parameters<Parameters<typeof db.transaction>[0]>[0];
 

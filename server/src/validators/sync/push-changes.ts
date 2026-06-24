@@ -1,12 +1,13 @@
-import { z } from "zod";
-import {
-  insertUserMissionSchema,
-  updateUserMissionSchema,
-} from "@/db/schemas/user-mission.schema";
+import { z } from 'zod';
+
 import {
   insertUserBadgeSchema,
   updateUserBadgeSchema,
-} from "@/db/schemas/user-badge.schema";
+} from '@/db/schemas/user-badge.schema';
+import {
+  insertUserMissionSchema,
+  updateUserMissionSchema,
+} from '@/db/schemas/user-mission.schema';
 
 export const tableChangesSchema = <
   TInsert extends z.ZodTypeAny,

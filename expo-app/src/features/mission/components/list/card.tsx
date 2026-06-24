@@ -1,8 +1,8 @@
-import { View, Pressable, type PressableProps } from "react-native";
-import { Typography } from "heroui-native/text";
 import { Card } from "heroui-native/card";
-import { Activity } from "react";
+import { Typography } from "heroui-native/text";
 import { cn } from "heroui-native/utils";
+import { Activity } from "react";
+import { Pressable, View, type PressableProps } from "react-native";
 
 import type { Mission } from "@/db/tables/mission.table";
 

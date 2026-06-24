@@ -1,7 +1,7 @@
-import { db } from "@/db";
-import { gt } from "drizzle-orm";
+import { gt } from 'drizzle-orm';
 
-import { badge, type Badge, type InsertBadge } from "@/db/schemas/badge.schema";
+import { db } from '@/db';
+import { badge, type Badge, type InsertBadge } from '@/db/schemas/badge.schema';
 
 export class BadgeService {
   private readonly database = db;

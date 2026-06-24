@@ -1,11 +1,11 @@
-import { View } from "react-native";
-import { Typography } from "heroui-native/text";
-import { Button } from "heroui-native/button";
 import { Avatar } from "heroui-native/avatar";
+import { Button } from "heroui-native/button";
+import { Typography } from "heroui-native/text";
+import { View } from "react-native";
 
-import { useSession } from "../../lib/auth";
 import { getUserProfileApi } from "@/features/user/api/user-profile.api";
 import { useSettingStore } from "@/store/settings";
+import { useSession } from "../../lib/auth";
 
 export default function SettingScreen() {
   const { data } = useSession();

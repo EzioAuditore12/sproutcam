@@ -1,18 +1,16 @@
+import { useRouter } from "expo-router";
 import { ScrollView } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useRouter } from "expo-router";
 
-import { useSession } from "../../lib/auth";
-
-import { WelcomeCard } from "@/features/home/components/welcome-card";
-import { StarsCard } from "@/features/home/components/stars-card";
+import { BadgeCard } from "@/features/home/components/badge-card";
 import { MissionCard } from "@/features/home/components/mission-card";
 import { ProgressCard } from "@/features/home/components/progress-card";
-import { BadgeCard } from "@/features/home/components/badge-card";
-
+import { StarsCard } from "@/features/home/components/stars-card";
+import { WelcomeCard } from "@/features/home/components/welcome-card";
 import { useTodayMission } from "@/features/home/hooks/database/use-home-missions";
 import { useHomeProgress, useTotalStars } from "@/features/home/hooks/database/use-home-progress";
 import { useLatestBadge } from "@/features/home/hooks/database/use-latest-badge";
+import { useSession } from "../../lib/auth";
 
 export default function HomeScreen() {
   const safeAreaInsets = useSafeAreaInsets();

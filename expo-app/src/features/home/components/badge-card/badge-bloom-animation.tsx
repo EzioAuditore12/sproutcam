@@ -1,14 +1,14 @@
+import { Blur, Canvas, Group, Path, vec } from "@shopify/react-native-skia";
 import { useEffect } from "react";
-import { Canvas, Path, Group, vec, Blur } from "@shopify/react-native-skia";
+import { View } from "react-native";
 import {
+  Easing,
+  useDerivedValue,
   useSharedValue,
   withRepeat,
-  withTiming,
-  Easing,
   withSequence,
-  useDerivedValue,
+  withTiming,
 } from "react-native-reanimated";
-import { View } from "react-native";
 
 export function BadgeBloomAnimation() {
   const rotation = useSharedValue(0);

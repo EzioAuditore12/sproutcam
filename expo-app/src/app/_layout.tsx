@@ -1,11 +1,11 @@
 import "../global.css";
 
 import { Stack } from "expo-router";
-import { HeroUINativeProvider } from "heroui-native/provider";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { DarkTheme, DefaultTheme, ThemeProvider } from "expo-router/react-navigation";
 import { StatusBar } from "expo-status-bar";
+import { HeroUINativeProvider } from "heroui-native/provider";
 import { useColorScheme } from "react-native";
-import { ThemeProvider, DarkTheme, DefaultTheme } from "expo-router/react-navigation";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { KeyboardProvider } from "react-native-keyboard-controller";
 
 import { PowerSyncDatabaseProvider } from "@/db";

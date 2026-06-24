@@ -1,13 +1,10 @@
 import { createRef, useMemo } from "react";
-
+import type { LayoutRectangle } from "react-native";
 import { useDerivedValue } from "react-native-reanimated";
 
-import type { LayoutRectangle } from "react-native";
-
 import { isHeader, type HeaderListItem, type ListItem } from "../constants";
-import { useMounted } from "./use-mounted";
-
 import type { MeasureableAnimatedViewRef } from "../measurable-animated-view";
+import { useMounted } from "./use-mounted";
 
 type UseHeaderLayoutParams = {
   headers: HeaderListItem[];

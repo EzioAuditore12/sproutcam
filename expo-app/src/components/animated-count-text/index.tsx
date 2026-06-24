@@ -1,9 +1,7 @@
-import { StyleSheet, View } from "react-native";
-
-import { useState } from "react";
-
 import { Entypo } from "@react-native-vector-icons/entypo";
 import { PressableScale } from "pressto";
+import { useState } from "react";
+import { StyleSheet, View } from "react-native";
 
 import { AnimatedCount } from "./animated-count";
 

@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+
 import { syncDatabase } from "@/db/sync";
 
 const POLLING_INTERVAL_MS = 1000 * 60 * 10; // run every 10 minutes

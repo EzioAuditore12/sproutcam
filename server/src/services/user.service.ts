@@ -1,7 +1,7 @@
-import { eq } from "drizzle-orm";
+import { eq } from 'drizzle-orm';
 
-import { db } from "@/db";
-import { type User, user } from "@/db/schemas/auth.schema";
+import { db } from '@/db';
+import { user, type User } from '@/db/schemas/auth.schema';
 
 export class UserService {
   private readonly database = db;

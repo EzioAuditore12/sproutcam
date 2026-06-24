@@ -1,5 +1,5 @@
-import { z } from "zod";
-import type { ValidatedRequest } from "express-zod-safe";
+import type { ValidatedRequest } from 'express-zod-safe';
+import { z } from 'zod';
 
 export const subscribeMissionSchema = z.object({ id: z.coerce.bigint() });
 

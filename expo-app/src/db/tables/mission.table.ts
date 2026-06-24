@@ -1,9 +1,9 @@
-import { index, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 import { createInsertSchema, createSelectSchema, createUpdateSchema } from "drizzle-arktype";
+import { index, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
 import { snowflakeIdGenerator } from "@/lib/snowflake";
-import { missionType } from "./enums/mission-type.enum";
 import { badgesTable } from "./badge.table";
+import { missionType } from "./enums/mission-type.enum";
 
 export const MISSIONS_TABLE_NAME = "missions";
 

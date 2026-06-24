@@ -1,6 +1,7 @@
-import { db, type DbType } from "@/db";
 import { count, eq, inArray } from "drizzle-orm";
-import { type InsertBadge, type Badge, badgesTable } from "../tables/badge.table";
+
+import { db, type DbType } from "@/db";
+import { badgesTable, type Badge, type InsertBadge } from "../tables/badge.table";
 
 export class BadgeRepository {
   private readonly database: DbType;

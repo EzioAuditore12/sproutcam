@@ -1,5 +1,4 @@
 import { authenticatedTypedFetch } from "../../../lib/auth/typed-fetch";
-
 import { PullChangesParam } from "../schemas/pull-changes/param.schema";
 import { pullChangesResponseSchema } from "../schemas/pull-changes/response.schema";
 

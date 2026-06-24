@@ -1,11 +1,11 @@
-import { View } from "react-native";
-import { Typography } from "heroui-native/text";
-import { Card } from "heroui-native/card";
 import { Button } from "heroui-native/button";
+import { Card } from "heroui-native/card";
+import { Typography } from "heroui-native/text";
+import { View } from "react-native";
 import { FadeInDown } from "react-native-reanimated";
-import { MotionView, type MotionViewProps } from "@/components/motion-view";
 import { useDebouncedCallback } from "use-debounce";
 
+import { MotionView, type MotionViewProps } from "@/components/motion-view";
 import { MissionAuraBackground } from "./mission-aura-background";
 
 export interface MissionCardProps extends Partial<MotionViewProps> {

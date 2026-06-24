@@ -1,6 +1,6 @@
 import { Redirect, Stack } from "expo-router";
-import { LoadingScreen } from "@/components/loading-screen";
 
+import { LoadingScreen } from "@/components/loading-screen";
 import { useSession } from "../../lib/auth";
 
 export default function AuthRootLayout() {

@@ -1,9 +1,10 @@
-import { db, type DbType } from "@/db";
 import { eq, inArray } from "drizzle-orm";
+
+import { db, type DbType } from "@/db";
 import {
+  userMissionsTable,
   type InsertUserMission,
   type UserMission,
-  userMissionsTable,
 } from "../tables/user-mission.table";
 
 export class UserMissionRepository {

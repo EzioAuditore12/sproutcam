@@ -1,14 +1,11 @@
-import { StyleSheet } from "react-native";
-
-import { useMemo } from "react";
-
 import Color from "color";
 import { PressableScale } from "pressto";
+import { useMemo } from "react";
+import { StyleSheet } from "react-native";
+import type { StyleProp, ViewStyle } from "react-native";
 import Animated, { FadeIn, FadeOut, LinearTransition } from "react-native-reanimated";
 
 import { ActivityIndicator, type ActivityStatus } from "./activity-indicator";
-
-import type { StyleProp, ViewStyle } from "react-native";
 
 type ActualButtonProps = {
   onPress?: () => Promise<void>;

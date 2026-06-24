@@ -1,13 +1,13 @@
+import { Blur, Canvas, Circle, Group, RadialGradient, vec } from "@shopify/react-native-skia";
 import { useEffect } from "react";
-import { Canvas, Circle, vec, Blur, RadialGradient, Group } from "@shopify/react-native-skia";
+import { View } from "react-native";
 import {
+  Easing,
+  useDerivedValue,
   useSharedValue,
   withRepeat,
   withTiming,
-  Easing,
-  useDerivedValue,
 } from "react-native-reanimated";
-import { View } from "react-native";
 
 export function MissionAuraBackground() {
   const auraScale = useSharedValue(0.8);

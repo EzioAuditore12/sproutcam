@@ -33,6 +33,14 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     bundler: "metro",
   },
   plugins: [
+    [
+      "expo-build-properties",
+      {
+        android: {
+          minSdkVersion: 26,
+        },
+      },
+    ],
     "expo-router",
     [
       "expo-splash-screen",
@@ -45,6 +53,10 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     "expo-secure-store",
     "expo-background-task",
     "react-native-nitro-fetch",
+    [
+      "react-native-fast-tflite",
+      { enableAndroidGpuLibraries: ["libOpenCL-pixel.so", "libGLES_mali.so"] },
+    ],
     "@react-native-vector-icons/entypo",
     "@react-native-vector-icons/ant-design",
     "@react-native-vector-icons/fontawesome6",

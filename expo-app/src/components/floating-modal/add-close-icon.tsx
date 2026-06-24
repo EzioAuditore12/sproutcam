@@ -1,12 +1,11 @@
-import { type FC, memo } from "react";
-
 import { AntDesign } from "@react-native-vector-icons/ant-design";
 import { PressableScale } from "pressto";
+import { memo, type FC } from "react";
 import {
   Extrapolation,
   interpolate,
-  type SharedValue,
   useAnimatedStyle,
+  type SharedValue,
 } from "react-native-reanimated";
 
 import { FLOATING_BUTTON_SIZE } from "./constants";

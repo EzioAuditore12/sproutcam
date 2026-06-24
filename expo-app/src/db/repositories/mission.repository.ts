@@ -1,6 +1,7 @@
-import { db, type DbType } from "@/db";
 import { count, eq, inArray } from "drizzle-orm";
-import { type InsertMission, type Mission, missionsTable } from "../tables/mission.table";
+
+import { db, type DbType } from "@/db";
+import { missionsTable, type InsertMission, type Mission } from "../tables/mission.table";
 
 export class MissionRepository {
   private readonly database: DbType;
