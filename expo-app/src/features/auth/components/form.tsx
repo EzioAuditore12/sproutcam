@@ -1,12 +1,7 @@
-import { useForm } from "@tanstack/react-form";
-import { Button } from "heroui-native/button";
-import { FieldError } from "heroui-native/field-error";
-import { Input } from "heroui-native/input";
-import { Label } from "heroui-native/label";
-import { TextField } from "heroui-native/text-field";
 import { cn } from "heroui-native/utils";
 import { View, type ViewProps } from "react-native";
 
+import { useAppForm } from "@/hooks/use-app-form";
 import { signIn } from "../../../lib/auth";
 import { loginParamSchema, type LoginParam } from "../schemas/param.schema";
 
@@ -15,7 +10,7 @@ interface LoginFormProps extends ViewProps {
 }
 
 export function LoginForm({ className, handleSubmit, ...props }: LoginFormProps) {
-  const Form = useForm({
+  const Form = useAppForm({
     defaultValues: {
       email: "",
       password: "",
@@ -36,46 +31,27 @@ export function LoginForm({ className, handleSubmit, ...props }: LoginFormProps)
   });
 
   return (
-    <View className={cn("flex-col gap-y-4", className)} {...props}>
-      <Form.Field name="email">
-        {({ name, state, handleBlur, handleChange }) => {
-          return (
-            <TextField isRequired isInvalid={!state.meta.isValid}>
-              <Label>Email</Label>
-              <Input
-                id={name}
-                value={state.value}
-                onBlur={handleBlur}
-                onChangeText={handleChange}
-                keyboardType="email-address"
-                placeholder="Enter your email ..."
-              />
-              <FieldError>{state.meta.errors.map((err) => err?.message)}</FieldError>
-            </TextField>
-          );
-        }}
-      </Form.Field>
+    <Form.AppForm>
+      <View className={cn("flex-col gap-y-4", className)} {...props}>
+        <Form.AppField name="email">
+          {(field) => (
+            <field.InputField label="Email" placeholder="Enter your email ..." isRequired />
+          )}
+        </Form.AppField>
 
-      <Form.Field name="password">
-        {({ name, state, handleBlur, handleChange }) => {
-          return (
-            <TextField isRequired isInvalid={!state.meta.isValid}>
-              <Label>Password</Label>
-              <Input
-                id={name}
-                value={state.value}
-                onBlur={handleBlur}
-                onChangeText={handleChange}
-                secureTextEntry
-                placeholder="Enter your password ..."
-              />
-              <FieldError>{state.meta.errors.map((err) => err?.message)}</FieldError>
-            </TextField>
-          );
-        }}
-      </Form.Field>
+        <Form.AppField name="password">
+          {(field) => (
+            <field.InputField
+              label="Password"
+              placeholder="Enter your password ..."
+              secureTextEntry
+              isRequired
+            />
+          )}
+        </Form.AppField>
 
-      <Button onPress={Form.handleSubmit}>Login</Button>
-    </View>
+        <Form.SubmitButton>Submit</Form.SubmitButton>
+      </View>
+    </Form.AppForm>
   );
 }
