@@ -3,6 +3,7 @@ import { Button } from "heroui-native/button";
 import { Activity, useRef, useState } from "react";
 import { View } from "react-native";
 
+import { useImageClassifier } from "../hooks/use-image-classifier.web";
 import { PhotoPreview } from "./photo-preview";
 
 interface PhotoTakerProps extends Omit<CameraViewProps, "ref" | "facing"> {
@@ -13,6 +14,8 @@ export function PhotoTaker({ isActive = true, ...props }: PhotoTakerProps) {
   const [facing, setFacing] = useState<CameraType>("back");
   const [capturedPhotoUri, setCapturedPhotoUri] = useState<string | null>(null);
   const cameraRef = useRef<CameraView>(null);
+
+  const { result } = useImageClassifier(capturedPhotoUri);
 
   function toggleCameraFacing() {
     setFacing((current) => (current === "back" ? "front" : "back"));
@@ -52,7 +55,11 @@ export function PhotoTaker({ isActive = true, ...props }: PhotoTakerProps) {
       </Activity>
 
       {/* Modal image viewer works on Web as well */}
-      <PhotoPreview photoUri={capturedPhotoUri} onDismiss={() => setCapturedPhotoUri(null)} />
+      <PhotoPreview
+        photoUri={capturedPhotoUri}
+        onDismiss={() => setCapturedPhotoUri(null)}
+        classification={result}
+      />
     </View>
   );
 }

@@ -1,6 +1,6 @@
+import { cn } from "cnfast";
 import { Card } from "heroui-native/card";
 import { Typography } from "heroui-native/text";
-import { cn } from "heroui-native/utils";
 import { Activity } from "react";
 import { Pressable, View, type PressableProps } from "react-native";
 

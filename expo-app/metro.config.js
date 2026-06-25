@@ -21,6 +21,8 @@ const webOnlyModules = new Set([
   "@powersync/web",
   "@react-native-async-storage/async-storage",
   "expo-camera",
+  "@tensorflow-models/mobilenet",
+  "@tensorflow/tfjs",
 ]);
 
 const webModuleMappings = {
