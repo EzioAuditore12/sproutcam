@@ -26,6 +26,8 @@ export function LoginForm({ className, handleSubmit, ...props }: LoginFormProps)
         password: value.password,
       });
 
+      if (response.error) alert(response.error.message || "An error occurred");
+
       console.log("Login response:", response);
     },
   });

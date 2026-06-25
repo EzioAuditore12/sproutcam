@@ -5,7 +5,7 @@ import { cn } from "heroui-native/utils";
 import { Activity, type ComponentProps } from "react";
 import { View } from "react-native";
 
-import { useFieldContext } from "@/lib/form-context";
+import { useFieldContext } from "@/lib/tanstack/form";
 import { FieldError } from "./field-error";
 
 export type InputFieldProps = InputProps & {

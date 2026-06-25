@@ -3,7 +3,7 @@ import { Spinner } from "heroui-native/spinner";
 import { cn } from "heroui-native/utils";
 import { Activity } from "react";
 
-import { useFormContext } from "@/lib/form-context";
+import { useFormContext } from "@/lib/tanstack/form";
 
 export const SubmitButton = ({ className, children, ...props }: ButtonRootProps) => {
   const form = useFormContext();

@@ -1,15 +1,13 @@
-import { useEffect } from "react";
-import { Camera, useCameraDevice, useCameraPermission } from "react-native-vision-camera";
+import { Camera, useCameraDevice } from "react-native-vision-camera";
+
+import { NoCameraPermissionScreen } from "@/features/mission/components/camera/components/no-camera-permission-screen";
+import { PhotoTaker } from "@/features/mission/components/camera/components/photo-taker";
+import { useGetCameraPermission } from "@/features/mission/components/camera/hooks/use-get-camera-permission";
 
 export default function MissionCameraScreen() {
-  const { hasPermission, requestPermission } = useCameraPermission();
-  const device = useCameraDevice("back");
+  const { hasPermission, requestPermission } = useGetCameraPermission();
 
-  useEffect(() => {
-    if (!hasPermission) requestPermission();
-  }, [hasPermission, requestPermission]);
+  if (!hasPermission) return <NoCameraPermissionScreen onRequestPermission={requestPermission} />;
 
-  if (!hasPermission || !device) return null;
-
-  return <Camera style={{ flex: 1 }} isActive={true} device={device} />;
+  return <PhotoTaker />;
 }
