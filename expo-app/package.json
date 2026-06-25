@@ -40,6 +40,7 @@
     "expo": "~56.0.12",
     "expo-background-task": "~56.0.19",
     "expo-build-properties": "~56.0.19",
+    "expo-camera": "~56.0.8",
     "expo-constants": "~56.0.16",
     "expo-crypto": "~56.0.4",
     "expo-linking": "~56.0.12",
@@ -94,16 +95,10 @@
       "android": {
         "exclude": [
           "@react-native-async-storage/async-storage",
-          "@powersync/web"
+          "@powersync/web",
+          "expo-camera"
         ]
       }
     }
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@journeyapps/wa-sqlite",
-      "@shopify/react-native-skia",
-      "unrs-resolver"
-    ]
   }
 }

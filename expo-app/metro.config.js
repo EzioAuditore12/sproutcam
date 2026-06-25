@@ -17,7 +17,11 @@ const nativeOnlyModules = new Set([
   "react-native-fast-tflite",
 ]);
 
-const webOnlyModules = new Set(["@powersync/web", "@react-native-async-storage/async-storage"]);
+const webOnlyModules = new Set([
+  "@powersync/web",
+  "@react-native-async-storage/async-storage",
+  "expo-camera",
+]);
 
 const webModuleMappings = {
   "react-native": "react-native-web",
